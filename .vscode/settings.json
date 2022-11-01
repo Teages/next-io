@@ -1,0 +1,45 @@
+{
+  "cSpell.words": [
+    "antfu",
+    "attributify",
+    "Cytoid",
+    "daisyui",
+    "demi",
+    "hitech",
+    "iconify",
+    "intlify",
+    "kidonng",
+    "nocheck",
+    "nuxt",
+    "nuxtjs",
+    "persistedstate",
+    "pinia",
+    "pnpm",
+    "sess",
+    "tailwindcss",
+    "unocss",
+    "unplugin",
+    "Vite",
+    "vitejs",
+    "Vitesse",
+    "vitest",
+    "vueuse",
+    "websockets"
+  ],
+  "i18n-ally.sourceLanguage": "zh-CN",
+  "i18n-ally.keystyle": "nested",
+  "i18n-ally.localesPaths": [
+    "locales"
+  ],
+  "i18n-ally.sortKeys": true,
+  "prettier.enable": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "files.associations": {
+    "*.css": "tailwindcss"
+  },
+  "editor.formatOnSave": false,
+  "tailwindCSS.experimental.configFile": ".nuxt/tailwind.config.cjs",
+  
+}

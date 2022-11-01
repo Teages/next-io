@@ -9,7 +9,8 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/apollo',
     '@vueuse/nuxt',
-    'nuxt-proxy'
+    'nuxt-proxy',
+    '@nuxtjs/tailwindcss'
   ],
 
   apollo: {
