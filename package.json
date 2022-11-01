@@ -1,0 +1,21 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "@nuxtjs/apollo": "^5.0.0-alpha.2",
+    "@nuxtjs/tailwindcss": "^6.1.2",
+    "nuxt": "3.0.0-rc.12"
+  },
+  "dependencies": {
+    "@vueuse/nuxt": "^9.4.0",
+    "config": "^3.3.8",
+    "dotenv": "^16.0.3",
+    "nuxt-proxy": "^0.3.2"
+  }
+}
