@@ -47,7 +47,7 @@ const login = async () => {
       captcha: captchaToken
     }
   })
-  console.log(method)
+  console.log(userData)
 }
 
 </script>
