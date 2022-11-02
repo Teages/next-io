@@ -51,15 +51,17 @@ export default defineNuxtConfig({
     __dangerouslyDisableSanitizers: ['script']
   },
 
-  // env: {
-  //   assetURL: config.get('assetURL'),
-  //   apiURL: config.get('serviceURLClient'),
-  //   imageURL: config.get('imageURL'),
-  //   webURL: config.get('webURL'),
-  //   analyticsCode: config.get('analyticsCode'),
-  //   captchaKey: config.get('captchaKey'),
-  // },
-
+  runtimeConfig: {
+    public: {
+      assetURL: config.get('assetURL'),
+      apiURL: config.get('serviceURLClient'),
+      imageURL: config.get('imageURL'),
+      webURL: config.get('webURL'),
+      analyticsCode: config.get('analyticsCode'),
+      captchaKey: config.get('captchaKey'),
+    }
+  },
+  
   proxy: {
     options: [
       {

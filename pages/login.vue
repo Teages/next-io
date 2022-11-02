@@ -6,21 +6,48 @@
           <label class="label">
             <span class="label-text">Cytoid ID</span>
           </label>
-          <input type="text" placeholder="Cytoid ID" class="input input-bordered" />
+          <input v-model="loginForm.username" type="text" placeholder="Cytoid ID" class="input input-bordered" />
         </div>
         <div class="form-control">
           <label class="label">
             <span class="label-text">Password</span>
           </label>
-          <input type="text" placeholder="Password" class="input input-bordered" />
+          <input v-model="loginForm.password" type="password" placeholder="Password" class="input input-bordered" />
           <label class="label">
             <a href="#" class="label-text-alt link link-hover">Need help?</a>
           </label>
+          <div class="form-control mt-2">
+            <label class="label cursor-pointer">
+              <span class="label-text">Remember me</span> 
+              <input type="checkbox" :checked="loginForm.remember" class="checkbox checkbox-primary" />
+            </label>
+          </div>
         </div>
-        <div class="form-control mt-6">
-          <button class="btn btn-primary">Login</button>
+        <div class="form-control mt-2">
+          <button class="btn btn-primary" @click="login">Login</button>
         </div>
       </div>
     </div>
   </div>
 </template>
+
+<script setup>
+const loginForm = {
+  username: "",
+  password: "",
+  remember: false
+}
+
+const login = async () => {
+  const captchaToken = await useVueReCaptcha()
+  const userData = await useService('/session', {
+    method: "POST",
+    body: {
+      ...loginForm,
+      captcha: captchaToken
+    }
+  })
+  console.log(method)
+}
+
+</script>

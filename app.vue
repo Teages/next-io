@@ -7,7 +7,7 @@
 </template>
 
 <style>
-html, body, body > div {
+html, body {
   height: 100vh;
   width: 100vw;
 }
