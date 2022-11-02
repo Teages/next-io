@@ -28,6 +28,19 @@
         </div>
       </div>
     </div>
+    <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+      <div class="card-body">
+        <div class="form-control">
+          <label class="label">
+            <span class="label-text">Cookie</span>
+          </label>
+          <input v-model="loginCookie" type="password" placeholder="Cookie" class="input input-bordered" />
+        </div>
+        <div class="form-control mt-2">
+          <button class="btn btn-primary" @click="loginWithCookie">Login with Cookie</button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -37,6 +50,8 @@ const loginForm = {
   password: "",
   remember: false
 }
+
+const loginCookie = ref("")
 
 const login = async () => {
   const captchaToken = await useVueReCaptcha()
@@ -50,4 +65,8 @@ const login = async () => {
   console.log(userData)
 }
 
+const loginWithCookie = () => {
+  const cookie = useCookie("cyt:mess")
+  cookie = loginCookie
+}
 </script>
