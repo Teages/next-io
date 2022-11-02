@@ -4,7 +4,7 @@
   "serviceURLServer": "http://api:4000",
   "serviceURLClient": "https://services.cytoid.io",
   "imageURL": "https://images.cytoid.io",
-  "webURL": "https://cytoid.io",
+  "webURL": "http://localhost:3000",
   "captchaKey": "6Le6KqsUAAAAANemJwIe18ld-0kKSQn9aqR4-ltM",
   "analyticsCode": "UA-127631599-1"
 }

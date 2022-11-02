@@ -18,29 +18,14 @@ export default defineNuxtConfig({
       default: {
         tokenName: 'cyt:sess',
         cookieAttributes: {
-          // expires: 7,
           path: '/',
           secure: false,
         },
-        // includeNodeModules: false,
-        // authenticationType: 'Bearer',
-        defaultOptions: {
-          // See 'apollo' definition
-          // For example: default query options
-          query: {
-            // loadingKey: 'loading',
-            fetchPolicy: 'cache-first',
-          },
-        },
-        // httpEndpoint: config.get('serviceURLServer') + '/graphql',
-        // browserHttpEndpoint: config.get('serviceURLClient') + '/graphql',
-        httpEndpoint: '/services/graphql',
-        browserHttpEndpoint: '/services/graphql',
+        httpEndpoint: config.get('webURL') + '/graphql',
         httpLinkOptions: {
           credentials: 'include'
         },
         wsEndpoint: null,
-        // persisting: true,
         websocketsOnly: false
       }
     },
@@ -66,28 +51,31 @@ export default defineNuxtConfig({
     __dangerouslyDisableSanitizers: ['script']
   },
 
-  env: {
-    assetURL: config.get('assetURL'),
-    apiURL: config.get('serviceURLClient'),
-    imageURL: config.get('imageURL'),
-    webURL: config.get('webURL'),
-    analyticsCode: config.get('analyticsCode'),
-    captchaKey: config.get('captchaKey'),
-  },
+  // env: {
+  //   assetURL: config.get('assetURL'),
+  //   apiURL: config.get('serviceURLClient'),
+  //   imageURL: config.get('imageURL'),
+  //   webURL: config.get('webURL'),
+  //   analyticsCode: config.get('analyticsCode'),
+  //   captchaKey: config.get('captchaKey'),
+  // },
 
   proxy: {
-    options: {
-      target: config.get('serviceURLClient'),
-      changeOrigin: true,
-      pathRewrite: {
-        '^/services': '/'
-      },
-      pathFilter: [
-        '/services'
-      ],
-      headers: {
-        'user-agent': process.env.SERVICES_UA
+    options: [
+      {
+        target: config.get('serviceURLClient'),
+        changeOrigin: true,
+        pathRewrite: {
+          '^/services': '/'
+        },
+        pathFilter: [
+          '/services',
+          '/graphql'
+        ],
+        headers: {
+          'user-agent': process.env.SERVICES_UA
+        }
       }
-    }
+    ]
   }
 })
