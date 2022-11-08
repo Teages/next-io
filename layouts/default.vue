@@ -1,5 +1,6 @@
 <template>
-  <div class="container min-h-full mx-auto flex flex-col justify-center content-center">
+
+  <div class="min-h-full mx-auto flex flex-col justify-center content-center overflow-x-hidden overflow-y-auto">
     <div>
       <!-- NAVBAR -->
       NAVBAR
@@ -13,4 +14,3 @@
     </div>
   </div>
 </template>
-

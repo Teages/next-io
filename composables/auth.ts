@@ -15,15 +15,17 @@ export const useAuth = () => {
 
   const loginWithCookie = async () => {
     const cookie = useCookie("cyt:sess")
-    const { data: response } = await useService<SessionResponse>('/session')
-    user.value = response.value.user
+    let { data } = await useService<SessionResponse>('/session')
+    if (!data.value) { // fxxk bug: get null when init App
+      data = (await useService<SessionResponse>('/session')).data
+    }
+    user.value = data.value.user
   }
 
   const login = async (payload) => {
     const { data: response } = await useService('/session', {
       method: 'POST',
       body: payload,
-      credentials: 'include'
     })
     await loginWithCookie()
   }
