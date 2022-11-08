@@ -30,7 +30,9 @@ export const useAuth = () => {
     await loginWithCookie()
   }
 
-  return {user, login, loginWithCookie, logout}
+  const isLogin = () => !(user.value == null)
+
+  return {user, login, loginWithCookie, logout, isLogin}
 }
 
 interface SessionResponse {

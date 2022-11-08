@@ -1,5 +1,5 @@
 <template>
-  <div class="w-screen h-screen relative overflow-hidden">
+  <div class="w-full h-full">
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>
@@ -26,5 +26,11 @@ html,
 body {
   height: 100vh;
   width: 100vw;
+}
+
+/* Daisy Custom */
+
+.btn-sm {
+  @apply font-medium;
 }
 </style>

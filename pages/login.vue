@@ -1,7 +1,7 @@
 <template>
-  <div class="m-auto w-fit sm:mr-0">
-    <div class="m-8 max-w-sm">
-      <div v-if="cookie" class="my-2">
+  <div class="max-w-sm m-auto p-4 sm:mr-0">
+    <div class="w-full">
+      <div v-if="cookie" class="py-2">
         <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
           <div class="card-body">
             <h2 class="card-title">Profile</h2>
