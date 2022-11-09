@@ -1,6 +1,6 @@
 import config from 'config'
 import * as dotenv from 'dotenv'
-const pkg = require('./package.json')
+import pkg from './package.json'
 
 dotenv.config()
 
