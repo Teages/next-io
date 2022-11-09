@@ -11,7 +11,7 @@ import studio from './studio.json'
 
 
 const locale = {
-  ...general,
+  general,
   collection_details,
   homepage,
   level_details,

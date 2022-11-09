@@ -36,5 +36,8 @@
   "tailwindCSS.experimental.configFile": ".nuxt/tailwind.config.cjs",
   "i18n-ally.localesPaths": [
     "locale"
-  ]
+  ],
+  "i18n-ally.keystyle": "nested",
+  "i18n-ally.pathMatcher": "{locale}/{namespaces}.json",
+  "i18n-ally.namespace": true
 }
