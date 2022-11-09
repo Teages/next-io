@@ -3,9 +3,9 @@ import { useService } from "./services"
 
 export const useAuth = () => {
   const user : Ref<UserData> = useState('user', () => null)
+  const cookie = useCookie("cyt:sess")
 
   const logout = async () => {
-    const cookie = useCookie("cyt:sess")
     user.value = null
     cookie.value = null
     return await useService('/session', {
@@ -14,7 +14,6 @@ export const useAuth = () => {
   }
 
   const loginWithCookie = async () => {
-    const cookie = useCookie("cyt:sess")
     let { data } = await useService<SessionResponse>('/session')
     if (!data.value) { // fxxk bug: get null when init App
       data = (await useService<SessionResponse>('/session')).data
@@ -32,7 +31,9 @@ export const useAuth = () => {
 
   const isLogin = () => !(user.value == null)
 
-  return {user, login, loginWithCookie, logout, isLogin}
+  const needLogin = () => !(cookie.value == null)
+
+  return {user, login, loginWithCookie, logout, isLogin, needLogin}
 }
 
 interface SessionResponse {

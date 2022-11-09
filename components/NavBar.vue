@@ -1,5 +1,5 @@
 <template>
-  <div class="navbar max-w-7xl m-auto sm:px-12">
+  <div class="navbar max-w-7xl  m-auto sm:px-12">
     <div class="flex flex-1 gap-0">
       <div class="hidden sm:block">
         <a class="btn btn-sm btn-ghost text-base-content font-medium hover:bg-transparent hover:text-primary">主页</a>
@@ -31,15 +31,27 @@
         <div class="flex-1" />
       </div>
     </div>
-    <div v-if="!auth.isLogin()" class="flex-none px-2 sm:px-0">
+    <div v-if="!auth.needLogin()" class="flex-none px-2 sm:px-0">
       <a class="btn btn-sm">登录</a>
     </div>
-  </div>
-  <div class="navbar hidden sm:block">
-
+    <div v-if="auth.isLogin()" class="flex-none px-2 sm:px-0">
+      <UserAvatar
+        :avatar="'https://assets.cytoid.io/avatar/5vw984LSlIpLW5DhD8N3RdfroM4y27vvZ88b7R6hRvp0Zk5gSa2PURTHvQ8Cu9gMw'"
+        :name="auth.user.value.name || auth.user.value.uid"
+        class="h-8 clickable"
+        @click="profileDialog = !profileDialog"
+      />
+      <div class="w-0 h-0 relative">
+        <UserProfileDialog />
+      </div>
+    </div>
+    <div v-else class="flex-none px-2 sm:px-0">
+      <NuxtLink class="btn btn-sm" to="/login">Loading...</NuxtLink>
+    </div>
   </div>
 </template>
 
 <script setup>
 const auth = useAuth()
+const profileDialog = false
 </script>
