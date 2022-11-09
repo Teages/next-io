@@ -26,13 +26,6 @@
     "vueuse",
     "websockets"
   ],
-  "i18n-ally.sourceLanguage": "zh-CN",
-  "i18n-ally.keystyle": "nested",
-  "i18n-ally.localesPaths": [
-    "locales"
-  ],
-  "i18n-ally.sortKeys": true,
-  "prettier.enable": false,
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
@@ -41,5 +34,7 @@
   },
   "editor.formatOnSave": false,
   "tailwindCSS.experimental.configFile": ".nuxt/tailwind.config.cjs",
-  
+  "i18n-ally.localesPaths": [
+    "locale"
+  ]
 }

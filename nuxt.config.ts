@@ -2,6 +2,8 @@ import config from 'config'
 import * as dotenv from 'dotenv'
 import pkg from './package.json'
 
+import * as locale from './locale'
+
 dotenv.config()
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
@@ -12,7 +14,16 @@ export default defineNuxtConfig({
     'nuxt-proxy',
     '@nuxtjs/tailwindcss',
     'nuxt-icon',
+    '@nuxtjs/i18n',
   ],
+
+  i18n: {
+    vueI18n: {
+      legacy: false,
+      locale: 'en',
+      messages: locale
+    }
+  },
 
   apollo: {
     clients: {

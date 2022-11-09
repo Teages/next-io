@@ -19,6 +19,7 @@
     "nuxt-icon": "^0.1.7"
   },
   "dependencies": {
+    "@nuxtjs/i18n": "^8.0.0-beta.3",
     "@tailwindcss/typography": "^0.5.7",
     "@vueuse/nuxt": "^9.4.0",
     "config": "^3.3.8",
