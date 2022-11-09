@@ -2,11 +2,11 @@
   <div class="navbar max-w-7xl m-auto sm:px-12 bg-gradient-to-b from-base-100 to-transparent">
     <div class="flex flex-1 gap-0">
       <div class="hidden sm:block">
-        <a class="btn btn-sm btn-ghost text-base-content font-medium hover:bg-transparent hover:text-primary">主页</a>
-        <a class="btn btn-sm btn-ghost text-base-content font-medium hover:bg-transparent hover:text-primary">谱面</a>
-        <a class="btn btn-sm btn-ghost text-base-content font-medium hover:bg-transparent hover:text-primary">Wiki</a>
+        <a class="btn btn-sm btn-ghost text-base-content font-medium tracking-wider hover:bg-transparent hover:text-primary">{{ $t('general.nav_home') }}</a>
+        <a class="btn btn-sm btn-ghost text-base-content font-medium tracking-wider hover:bg-transparent hover:text-primary">{{ $t('general.nav_levels') }}</a>
+        <a class="btn btn-sm btn-ghost text-base-content font-medium tracking-wider hover:bg-transparent hover:text-primary">{{ $t('general.nav_wiki') }}</a>
         <a
-          class="btn btn-sm btn-ghost text-base-content font-medium hover:bg-transparent hover:text-primary">Qualified</a>
+          class="btn btn-sm btn-ghost text-base-content font-medium tracking-wider hover:bg-transparent hover:text-primary">Qualified</a>
       </div>
 
       <div class="flex flex-1 sm:hidden">
@@ -56,7 +56,7 @@
       </Transition>
     </div>
     <div v-else class="flex-none px-2 sm:px-0">
-      <NuxtLink class="btn btn-sm" to="/login">Loading...</NuxtLink>
+      <NuxtLink class="btn btn-sm" to="/session/login">Loading...</NuxtLink>
     </div>
   </div>
 </template>

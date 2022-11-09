@@ -9,13 +9,13 @@
 
       <div class="card-body p-4">
         <ul class="menu bg-base-100 w-full p-0 rounded-box">
-          <li class="hover-bordered"><a> <Icon name="mdi:account" size="24" /> 资料 </a></li>
-          <li class="hover-bordered"><a> <Icon name="carbon:media-library-filled" size="24" /> 关卡库 </a></li>
-          <li class="hover-bordered"><a> <Icon name="mdi:puzzle" size="24" /> 工作室 </a></li>
-          <li class="hover-bordered"><a> <Icon name="ic:baseline-settings" size="24" /> 设置 </a></li>
+          <li class="hover-bordered"><a> <Icon name="mdi:account" size="24" /> {{ $t('general.profile') }} </a></li>
+          <li class="hover-bordered"><a> <Icon name="carbon:media-library-filled" size="24" /> {{ $t('general.studio') }} </a></li>
+          <li class="hover-bordered"><a> <Icon name="mdi:puzzle" size="24" /> {{ $t('general.library') }} </a></li>
+          <li class="hover-bordered"><a> <Icon name="ic:baseline-settings" size="24" /> {{ $t('general.settings') }} </a></li>
         </ul>
         <div class="card-actions justify-end">
-          <button class="btn btn-primary btn-block">退出登录</button>
+          <button class="btn btn-primary btn-block">{{ $t('general.signout_btn')}}</button>
         </div>
       </div>
     </div>

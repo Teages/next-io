@@ -4,7 +4,9 @@
       <NavBar />
     </div>
     <div class="flex-1 w-full max-w-screen-2xl">
-      <slot />
+      <div class="py-4 px-4 sm:px-12">
+        <slot />
+      </div>
     </div>
     <div class="w-full z-10">
       <Footer />
