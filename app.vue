@@ -22,8 +22,9 @@
 <style>
 html,
 body {
-  height: 100vh;
+  min-height: 100vh;
   width: 100vw;
+  overflow-x: hidden
 }
 
 /* Daisy Custom */
@@ -64,5 +65,9 @@ body {
 }
 .not-clickable {
   @apply cursor-default
+}
+
+.menu .menu-title > * {
+  @apply text-neutral-content
 }
 </style>
