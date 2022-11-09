@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed right-0 top-12 p-2 sm:absolute sm:top-8 sm:-right-4">
+  <div class="fixed right-4 top-12 p-2 sm:absolute sm:top-8 sm:-right-4">
     <div class="card bg-base-100 shadow-xl w-64">
       <div class="card w-full bg-base-100 shadow-xl image-full">
         <figure><img src="https://images.cytoid.io/headers/QXl1odFzouGR0DfIfRHJSgIvPzmcnJYzqg0Fv4dFmLfIcP6X3jUwtjXmkwgvJUQ?h=360&w=576" alt="Shoes" /></figure>
@@ -15,7 +15,7 @@
           <li class="hover-bordered"><a> <Icon name="ic:baseline-settings" size="24" /> 设置 </a></li>
         </ul>
         <div class="card-actions justify-end">
-          <button class="btn btn-primary btn-block">Logout</button>
+          <button class="btn btn-primary btn-block">退出登录</button>
         </div>
       </div>
     </div>
