@@ -8,6 +8,7 @@
 </template>
 
 <script setup>
+// auth
 (async () => {
   const auth = useAuth()
   if (!auth.user.value) {
@@ -18,7 +19,30 @@
   }
 })();
 
-const i18n = useLocales()
+// i18n
+(() => {
+  const headers = useRequestHeaders(['accept-language'])
+  const { availableLocales , setLocale } = useLocales()
+  const acceptLang = headers['accept-language']
+  if (acceptLang) {
+    let acceptLangs = acceptLang.split(',')
+    let acceptLangList = acceptLangs.map((lang) => {
+      let [ name, langQ ] = lang.split(';')
+      let q = langQ ? parseFloat(langQ.split('=')[1]) : 1
+      let langM = { name , q }
+      return langM
+    }).sort((a, b) => b.q - a.q)
+    for (let lang of acceptLangList) {
+      for (let availableLang of availableLocales) {
+        if (lang.name.toLowerCase() == availableLang.toLowerCase()) {
+          setLocale(lang.name)
+          return
+        }
+      }
+    }
+  }
+})();
+
 </script>
 
 <style>

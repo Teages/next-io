@@ -1,11 +1,9 @@
-
-
 export const useLocales = () => {
   const { availableLocales, locale, setLocale: i18nSetLocale } = useI18n()
   
   availableLocales.splice(availableLocales.indexOf('default'), 1)
   
-  const cookie = useCookie('locale', {default: getDefaultCookie})
+  const cookie = useCookie('locale')
   
   const setLocale = (code:string) => {
     cookie.value = code
@@ -17,12 +15,7 @@ export const useLocales = () => {
     })
   }
   
-  setLocale(cookie.value)
+  i18nSetLocale(cookie.value || 'en')
 
   return { availableLocales, locale, setLocale }
-  function getDefaultCookie() {
-    const headers = useRequestHeaders(['accept-language'])
-    console.log(headers)
-    return 'en'
-  }
 }
