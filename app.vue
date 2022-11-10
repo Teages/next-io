@@ -17,14 +17,19 @@
     }
   }
 })();
+
+const i18n = useLocales()
 </script>
 
 <style>
 html,
 body {
   min-height: 100vh;
-  width: 100vw;
-  overflow-x: hidden
+  width: 100%;
+}
+
+body {
+  @apply bg-black bg-opacity-30
 }
 
 /* Daisy Custom */
