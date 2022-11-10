@@ -1,7 +1,7 @@
 <template>
   <LayoutStudio>
     <template #StudioMenu>
-      <ul class="menu bg-base-100 w-full px-2 py-4 rounded-box">
+      <ul class="menu bg-base-100 w-full p-4 rounded-box">
         <li class="menu-title">
           <span>Category</span>
         </li>

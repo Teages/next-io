@@ -87,7 +87,7 @@ export default defineNuxtConfig({
           '/graphql'
         ],
         headers: {
-          'user-agent': process.env.SERVICES_UA
+          'user-agent': process.env.SERVICES_UA ?? ''
         }
       }
     ]

@@ -31,7 +31,7 @@ export const useAuth = () => {
 
   const isLogin = () => !(user.value == null)
 
-  const needLogin = () => !(cookie.value == null)
+  const needLogin = () => (cookie.value == null)
 
   return {user, login, loginWithCookie, logout, isLogin, needLogin}
 }
