@@ -2,27 +2,27 @@ import { Ref } from "vue"
 import { useService } from "./services"
 
 export const useAuth = () => {
-  const user : Ref<UserData> = useState('user', () => null)
-  const cookie = useCookie("cyt:sess")
+  const user : Ref<UserData | null> = useState('user')
+  const cookie = useCookie<String | null>("cyt:sess")
 
   const logout = async () => {
     user.value = null
     cookie.value = null
-    return await useService('/session', {
+    return await useFetch(useService('/session'), {
       method: 'DELETE'
     })
   }
 
   const loginWithCookie = async () => {
-    let { data } = await useService<SessionResponse>('/session')
+    let { data } = await useFetch<SessionResponse>(useService('/session'))
     if (!data.value) { // fxxk bug: get null when init App
-      data = (await useService<SessionResponse>('/session')).data
+      data = (await useFetch<SessionResponse>(useService('/session'))).data
     }
-    user.value = data.value.user
+    user.value = data.value?.user ?? null
   }
 
-  const login = async (payload) => {
-    const { data: response } = await useService('/session', {
+  const login = async (payload:any) => {
+    const { data: response } = await useFetch(useService('/session'), {
       method: 'POST',
       body: payload,
     })
