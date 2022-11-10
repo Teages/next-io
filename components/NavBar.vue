@@ -31,10 +31,10 @@
         <div class="flex-1" />
       </div>
     </div>
-    <div v-if="!auth.needLogin()" class="flex-none px-2 sm:px-0">
+    <div v-if="auth.needLogin()" class="flex-none px-2 sm:px-0">
       <a class="btn btn-sm">登录</a>
     </div>
-    <div v-if="auth.isLogin()" class="flex-none px-2 sm:px-0">
+    <div v-else-if="auth.isLogin()" class="flex-none px-2 sm:px-0">
       <div v-if="auth.user.value.role === 'admin'" class="px-2 tooltip tooltip-bottom" data-tip="Cytoid Admin">
         <button class="btn btn-circle btn-sm not-clickable btn-primary">
           <Icon name="clarity:administrator-solid" size="18"/>
