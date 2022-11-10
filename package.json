@@ -15,8 +15,7 @@
     "@nuxtjs/apollo": "^5.0.0-alpha.2",
     "@nuxtjs/tailwindcss": "^6.1.2",
     "daisyui": "^2.37.0",
-    "nuxt": "3.0.0-rc.13",
-    "nuxt-icon": "^0.1.7"
+    "nuxt": "3.0.0-rc.13"
   },
   "dependencies": {
     "@nuxtjs/i18n": "^8.0.0-beta.3",
@@ -30,6 +29,7 @@
     "marked": "^4.2.2",
     "nuxt-proxy": "^0.3.2",
     "sanitize-html": "^2.7.3",
-    "vue-recaptcha-v3": "^2.0.1"
+    "vue-recaptcha-v3": "^2.0.1",
+    "nuxt-icon": "^0.1.7"
   }
 }

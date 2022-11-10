@@ -20,10 +20,10 @@
               </svg>
             </label>
             <ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-              <li><a>主页</a></li>
-              <li><a>谱面</a></li>
-              <li><a>Wiki</a></li>
-              <li><a>Qualified</a></li>
+              <li><NuxtLink to="/">{{ $t('general.nav_home') }}</NuxtLink></li>
+              <li><NuxtLink to="/levels">{{ $t('general.nav_levels') }}</NuxtLink></li>
+              <li><NuxtLink to="https://cytoid.wiki">{{ $t('general.nav_wiki') }}</NuxtLink></li>
+              <li><NuxtLink>Qualified</NuxtLink></li>
             </ul>
           </div>
         </div>
