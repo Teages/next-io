@@ -27,9 +27,9 @@
     "config": "^3.3.8",
     "dotenv": "^16.0.3",
     "marked": "^4.2.2",
+    "nuxt-icon": "^0.1.7",
     "nuxt-proxy": "^0.3.2",
     "sanitize-html": "^2.7.3",
-    "vue-recaptcha-v3": "^2.0.1",
-    "nuxt-icon": "^0.1.7"
+    "vue-recaptcha-v3": "^2.0.1"
   }
 }

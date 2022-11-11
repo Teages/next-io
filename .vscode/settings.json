@@ -17,6 +17,7 @@
     "persistedstate",
     "pinia",
     "pnpm",
+    "recaptcha",
     "sess",
     "tailwindcss",
     "unocss",

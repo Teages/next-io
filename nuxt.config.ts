@@ -78,11 +78,11 @@ export default defineNuxtConfig({
       {
         target: config.get('serviceURLClient'),
         changeOrigin: true,
-        pathRewrite: {
-          '^/services': '/'
-        },
+        // pathRewrite: {
+        //   '^/services': '/'
+        // },
         pathFilter: [
-          '/services',
+          // '/services',
           '/graphql'
         ],
         headers: {

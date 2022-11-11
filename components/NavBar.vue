@@ -32,7 +32,7 @@
       </div>
     </div>
     <div v-if="auth.needLogin()" class="flex-none px-2 sm:px-0">
-      <a class="btn btn-sm">登录</a>
+      <NuxtLink class="btn btn-sm" to="/session/login">{{ $t('general.login_btn') }}</NuxtLink>
     </div>
     <div v-else-if="auth.isLogin()" class="flex-none px-2 sm:px-0">
       <div v-if="auth.user.value.role === 'admin'" class="px-2 tooltip tooltip-bottom" data-tip="Cytoid Admin">

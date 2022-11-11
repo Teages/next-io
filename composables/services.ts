@@ -23,7 +23,7 @@
 
 export function useService(url:string) {
   const config = useRuntimeConfig()
-  const baseUrl = '/services'
+  const baseUrl = 'https://services.cytoid.io'
 
   return `${baseUrl}${url}`
 }
