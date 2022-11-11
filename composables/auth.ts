@@ -8,21 +8,21 @@ export const useAuth = () => {
   const logout = async () => {
     user.value = null
     cookie.value = null
-    return await useFetch(useService('/session'), {
+    return await useService('/session', {
       method: 'DELETE'
     })
   }
 
   const loginWithCookie = async () => {
-    let { data } = await useFetch<SessionResponse>(useService('/session'))
+    let { data } = await useService<SessionResponse>('/session')
     if (!data.value) { // fxxk bug: get null when init App
-      data = (await useFetch<SessionResponse>(useService('/session'))).data
+      data = (await useService<SessionResponse>('/session')).data
     }
     user.value = data.value?.user ?? null
   }
 
   const login = async (payload:any) => {
-    const { data: response } = await useFetch(useService('/session'), {
+    const { data: response } = await useService('/session', {
       method: 'POST',
       body: payload,
     })

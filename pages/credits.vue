@@ -38,5 +38,5 @@
 
 <script setup>
 const route = useRoute()
-const { data } = await useFetch(useService('/creditmeta'))
+const { data } = await useService('/creditmeta')
 </script>
