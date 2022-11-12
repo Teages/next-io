@@ -8,13 +8,19 @@ export const useVueReCaptcha = async () => {
     siteKey: config.public.captchaKey,
     loaderOptions: {
       autoHideBadge: false,
-      // renderParameters: {
-      //   badge: 'bottomleft',
-      //   size: 'invisible',
-      // }
+      useRecaptchaNet: true,
+      renderParameters: {
+        badge: 'bottomleft',
+        size: 'invisible',
+      }
     }
   })
-  const { executeRecaptcha, recaptchaLoaded } = useReCaptcha()
-  await recaptchaLoaded()
-  return await executeRecaptcha('login')
+  const reCaptcha = useReCaptcha()
+  if (reCaptcha != undefined) {
+    const { executeRecaptcha, recaptchaLoaded } = reCaptcha
+    await recaptchaLoaded()
+    return await executeRecaptcha('login')
+  } else {
+    return null
+  }
 }

@@ -69,7 +69,8 @@ export default defineNuxtConfig({
       webURL: config.get('webURL'),
       analyticsCode: config.get('analyticsCode'),
       captchaKey: config.get('captchaKey'),
-      servicesUA: process.env.SERVICES_UA ?? ''
+      servicesUA: process.env.SERVICES_UA ?? '',
+      description: pkg.description,
     }
   },
   

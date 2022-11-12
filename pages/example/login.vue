@@ -76,7 +76,7 @@
 
 <script setup>
 const auth = useAuth()
-const cookie = useCookie("cyt:sess")
+const cookie = useSavedCookie("cyt:sess")
 const loginForm = {
   username: "",
   password: "",

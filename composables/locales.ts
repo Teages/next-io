@@ -3,7 +3,7 @@ export const useLocales = () => {
   
   availableLocales.splice(availableLocales.indexOf('default'), 1)
   
-  const cookie = useCookie('locale')
+  const cookie = useSavedCookie('locale')
   
   const setLocale = (code:string) => {
     cookie.value = code
@@ -17,5 +17,5 @@ export const useLocales = () => {
   
   i18nSetLocale(cookie.value || 'en')
 
-  return { availableLocales, locale, setLocale }
+  return { availableLocales, locale, setLocale, localeCookie: cookie }
 }

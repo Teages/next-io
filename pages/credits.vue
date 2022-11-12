@@ -1,5 +1,4 @@
 <template>
-  <!-- {{ data }} -->
   <div class="hero">
     <div class="hero-content text-center">
       <div class="max-w-md">
@@ -26,11 +25,16 @@
       We would like to thank our {{ data.patronsCount }} patrons who donated to keep our servers alive.
     </p>
   </div>
-  <div>
+  <div class="px-4">
     <NuxtLink v-for="patron in data.patrons" :to="`/profile/${patron.owner.uid}`" :key="patron.id"
       class="ml-1 my-4 flex items-center">
-      <UserAvatar :avatar="patron.owner.avatar.small" :name="patron.owner.name || patron.owner.uid"
-        class="h-8 w-fit bg-opacity-0" />
+      <div class="avatar h-8 px-4 w-fit bg-opacity-0">
+        <div class="aspect-square rounded-full">
+          <img :src="patron.owner.avatar.small" />
+        </div>
+      </div>
+
+      <p> {{ patron.owner.name || patron.owner.uid }} </p>
       <p class="px-2 opacity-75">{{ patron.quote }}</p>
     </NuxtLink>
   </div>

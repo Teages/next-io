@@ -3,7 +3,7 @@ import { useService } from "./services"
 
 export const useAuth = () => {
   const user : Ref<UserData | null> = useState('user')
-  const cookie = useCookie<String | null>("cyt:sess")
+  const cookie = useSavedCookie<String | null>("cyt:sess")
 
   const logout = async () => {
     user.value = null
