@@ -1,7 +1,7 @@
 import { UseFetchOptions } from '#app'
 import { KeyOfRes } from 'nuxt/dist/app/composables/asyncData'
 
-export async function useService<T>(
+export function useService<T>(
   url: string,
   options?:
     | UseFetchOptions<
@@ -17,15 +17,16 @@ export async function useService<T>(
   // const baseUrl = 'https://services.cytoid.io'
   const baseUrl = 'http://localhost:4000'
 
-  return await useFetch<T>(`${baseUrl}${url}`, {
+  return useFetch<T>(`${baseUrl}${url}`, {
     credentials: 'include',
     ...options
   })
 }
 
-// export function useService(url:string) {
-//   const config = useRuntimeConfig()
-//   const baseUrl = 'https://services.cytoid.io'
+export function useServiceUrl(url:string) {
+  const config = useRuntimeConfig()
+  // const baseUrl = 'https://services.cytoid.io'
+  const baseUrl = 'http://localhost:4000'
 
-//   return `${baseUrl}${url}`
-// }
+  return `${baseUrl}${url}`
+}

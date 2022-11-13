@@ -11,7 +11,7 @@ export const useAuth = () => {
   const logout = async () => {
     user.value = null
     cookie.value = null
-    return await useService('/session', {
+    return await useService<SessionResponse>('/session', {
       method: 'DELETE'
     })
   }
