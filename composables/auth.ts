@@ -2,8 +2,11 @@ import { Ref } from "vue"
 import { useService } from "./services"
 
 export const useAuth = () => {
-  const user : Ref<UserData | null> = useState('user')
+  const user : Ref<UserData | null | undefined> = useState('user')
   const cookie = useSavedCookie<String | null>("cyt:sess")
+  
+  const isLogin = () => !(user.value == null)
+  const loginTrying = useState(() => false)
 
   const logout = async () => {
     user.value = null
@@ -15,25 +18,21 @@ export const useAuth = () => {
 
   const loginWithCookie = async () => {
     let { data } = await useService<SessionResponse>('/session')
-    if (!data.value) { // fxxk bug: get null when init App
-      data = (await useService<SessionResponse>('/session')).data
-    }
-    user.value = data.value?.user ?? null
+    user.value = data.value?.user
+    return data.value?.user
   }
 
-  const login = async (payload:any) => {
-    const { data: response } = await useService('/session', {
+  const loginWithPayload = async (payload:Payload) => {
+    const { data } = await useService<SessionResponse>('/session', {
       method: 'POST',
       body: payload,
     })
-    await loginWithCookie()
+    console.log(data)
+    user.value = data.value?.user ?? null
+    return data.value?.user
   }
 
-  const isLogin = () => !(user.value == null)
-
-  const needLogin = () => (cookie.value == null)
-
-  return {user, login, loginWithCookie, logout, isLogin, needLogin}
+  return { user, loginWithPayload, loginWithCookie, logout, isLogin, loginTrying }
 }
 
 interface SessionResponse {
@@ -47,4 +46,11 @@ interface UserData {
   name?: string,
   uid: string,
   role: string
+}
+
+interface Payload {
+  username: string,
+  password: string,
+  remember: boolean,
+  captcha: string
 }

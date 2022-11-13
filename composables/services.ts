@@ -14,9 +14,11 @@ export async function useService<T>(
     | undefined
 ) {
   const config = useRuntimeConfig()
-  const baseUrl = 'https://services.cytoid.io'
+  // const baseUrl = 'https://services.cytoid.io'
+  const baseUrl = 'http://localhost:4000'
 
   return await useFetch<T>(`${baseUrl}${url}`, {
+    credentials: 'include',
     ...options
   })
 }

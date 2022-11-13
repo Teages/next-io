@@ -87,7 +87,7 @@ const loginCookie = ref("")
 
 const login = async () => {
   const captchaToken = await useVueReCaptcha()
-  const userData = await useFetch(useService('/session'), {
+  const userData = await useService('/session', {
     method: "POST",
     body: {
       ...loginForm,

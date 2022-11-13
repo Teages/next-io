@@ -31,33 +31,40 @@
         <div class="flex-1" />
       </div>
     </div>
-    <div v-if="auth.needLogin()" class="flex-none px-2 sm:px-0">
-      <NuxtLink class="btn btn-sm" to="/session/login">{{ $t('general.login_btn') }}</NuxtLink>
-    </div>
-    <div v-else-if="auth.isLogin()" class="flex-none px-2 sm:px-0">
-      <div v-if="auth.user.value.role === 'admin'" class="px-2 tooltip tooltip-bottom" data-tip="Cytoid Admin">
-        <button class="btn btn-circle btn-sm not-clickable btn-primary">
-          <Icon name="clarity:administrator-solid" size="18"/>
-        </button>
-      </div>
-      <div v-else-if="auth.user.value.role === 'moderator'" class="px-2 tooltip tooltip-bottom" data-tip="Cytoid Moderator">
-        <button class="btn btn-circle btn-sm not-clickable btn-primary">
-          <Icon name="pajamas:admin" size="18"/>
-        </button>
-      </div>
-      <UserAvatar
-        :avatar="'https://assets.cytoid.io/avatar/5vw984LSlIpLW5DhD8N3RdfroM4y27vvZ88b7R6hRvp0Zk5gSa2PURTHvQ8Cu9gMw'"
-        :name="auth.user.value.name || auth.user.value.uid" class="h-8 clickable flex-row-reverse"
-        @click="profileDialog = !profileDialog" />
-      <Transition>
-        <div v-show="profileDialog" class="w-0 h-0 relative">
-          <UserProfileDialog ref="profileDialogDom" />
+    <ClientOnly>
+      <div v-if="auth.loginTrying.value">
+        <div class="dropdown dropdown-end">
+          <label tabindex="0" class="btn btn-sm">Loading...</label>
+          <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+            <li><a>{{ $t('general.signout_btn')}}</a></li>
+          </ul>
         </div>
-      </Transition>
-    </div>
-    <div v-else class="flex-none px-2 sm:px-0">
-      <NuxtLink class="btn btn-sm" to="/session/login">Loading...</NuxtLink>
-    </div>
+      </div>
+      <div v-else-if="auth.isLogin()" class="flex-none px-2 sm:px-0">
+        <div v-if="auth.user.value.role === 'admin'" class="px-2 tooltip tooltip-bottom" data-tip="Cytoid Admin">
+          <button class="btn btn-circle btn-sm not-clickable btn-primary">
+            <Icon name="clarity:administrator-solid" size="18"/>
+          </button>
+        </div>
+        <div v-else-if="auth.user.value.role === 'moderator'" class="px-2 tooltip tooltip-bottom" data-tip="Cytoid Moderator">
+          <button class="btn btn-circle btn-sm not-clickable btn-primary">
+            <Icon name="pajamas:admin" size="18"/>
+          </button>
+        </div>
+        <UserAvatar
+          :avatar="'https://assets.cytoid.io/avatar/5vw984LSlIpLW5DhD8N3RdfroM4y27vvZ88b7R6hRvp0Zk5gSa2PURTHvQ8Cu9gMw'"
+          :name="auth.user.value.name || auth.user.value.uid" class="h-8 clickable flex-row-reverse"
+          @click="profileDialog = !profileDialog" />
+        <Transition>
+          <div v-show="profileDialog" class="w-0 h-0 relative">
+            <UserProfileDialog ref="profileDialogDom" />
+          </div>
+        </Transition>
+      </div>
+      <div v-else class="flex-none px-2 sm:px-0">
+        <NuxtLink class="btn btn-sm" to="/session/login">{{ $t('general.login_btn') }}</NuxtLink>
+      </div>
+    </ClientOnly>
   </div>
 </template>
 

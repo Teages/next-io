@@ -9,17 +9,6 @@
 </template>
 
 <script setup>
-// auth
-(async () => {
-  const auth = useAuth()
-  if (!auth.user.value) {
-    const cookie = useSavedCookie("cyt:sess")
-    if (cookie.value && process.client) {
-      await auth.loginWithCookie()
-    }
-  }
-})();
-
 // i18n
 (() => {
   const headers = useRequestHeaders(['accept-language'])
@@ -47,6 +36,18 @@
         }
       }
     }
+  }
+})();
+
+// auth
+(async () => {
+  const auth = useAuth()
+  if (process.client) {
+    auth.loginTrying.value = true
+    await wait() // Idk but the nex line will return null if I don't wait a millisecond
+    const user = await auth.loginWithCookie()
+    console.log(user)
+    auth.loginTrying.value = false
   }
 })();
 
