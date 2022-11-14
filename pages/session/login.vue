@@ -37,14 +37,14 @@
           <button class="btn btn-primary" @click="loginWithPayload">{{ $t('general.login_btn') }}</button>
         </div>
         <div class="flex w-full justify-around">
-          <button class="btn btn-link">
+          <button class="btn btn-link" @click="loginWithProvider('google')">
             <Icon name="bi:google" size="20" />
           </button>
           <button class="btn btn-link">
-            <Icon name="bi:facebook" size="20" />
+            <Icon name="bi:facebook" size="20" @click="loginWithProvider('facebook')"/>
           </button>
           <button class="btn btn-link">
-            <Icon name="bi:discord" size="20" />
+            <Icon name="bi:discord" size="20" @click="loginWithProvider('discord')"/>
           </button>
         </div>
         <div class="divider">OR</div>
@@ -61,6 +61,8 @@
 <script setup lang="ts">
 import { FetchError } from 'ohmyfetch';
 const { t } = useI18n()
+const router = useRouter()
+const route = useRoute()
 
 const auth = useAuth()
 const loginForm = {
@@ -100,7 +102,42 @@ const loginWithPayload = async () => {
   console.log(userData)
   if (userData) {
     console.log(t('general.login_snack_bar', {name: userData.name || userData.uid}))
+    loginNext()
   }
+}
+
+const loginWithProvider = (provider:string) => {
+  if (process.client) {
+    window.addEventListener('message', providerResponded)
+    window.open(useServiceUrl('/session/external/' + provider))
+  }
+
+  function providerResponded(event:MessageEvent) {
+    console.log(event.data)
+    console.log(event.origin)
+    if (event.origin !== 'https://services.cytoid.io') {
+      return
+    }
+    window.removeEventListener('message', providerResponded)
+    if (event.data.user) {
+      auth.user.value = event.data.user
+      console.log(t('general.login_snack_bar', {name: event.data.user.name || event.data.user.uid}))
+      loginNext()
+    } else if (event.data.token && event.data.provider) {
+      router.replace({
+        name: 'session-link',
+        query: {
+          token: event.data.token,
+          provider: event.data.provider,
+          origin: route.query.origin || null,
+        }
+      })
+    }
+  }
+}
+
+function loginNext() {
+
 }
 
 definePageMeta({
