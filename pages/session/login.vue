@@ -56,46 +56,51 @@
       </div>
     </div>
   </div>
-  <div class="my-2">
-    <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-      <div class="card-body">
-        <h2 class="card-title">Login with Cookie (Debug)</h2>
-        <div class="form-control">
-          <label class="label">
-            <span class="label-text">Cookie</span>
-          </label>
-          <input v-model="loginCookie" type="password" placeholder="Cookie" class="input input-bordered" />
-        </div>
-        <div class="form-control mt-2">
-          <button class="btn btn-primary" @click="loginWithCookie">Login</button>
-        </div>
-      </div>
-    </div>
-  </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { FetchError } from 'ohmyfetch';
+const { t } = useI18n()
+
 const auth = useAuth()
 const loginForm = {
   username: "",
   password: "",
   remember: false
 }
-const loginCookie = ref("")
-
 
 const loginWithPayload = async () => {
+  if (loginForm.username === '') {
+    return
+  }
+  if (loginForm.password === '') {
+    return
+  }
+
   const captchaToken = await useCaptcha()
   console.log(captchaToken)
   const userData = await auth.loginWithPayload({
     ...loginForm,
     captcha: captchaToken
+  }).catch((error:FetchError) => {
+    const code = error.response?.status ?? 0
+    if (code == 401) {
+      console.log(t('general.login_password_error'))
+      return
+    } else if (code == 403) {
+      console.log(t('general.login_inactive_error'))
+      return
+    } else if (code == 404) {
+      console.log(t('general.login_username_error'))
+      return
+    } else {
+      console.log(`Unknown error(${code}): `, error)
+    }
   })
   console.log(userData)
-}
-
-const loginWithCookie = () => {
-
+  if (userData) {
+    console.log(t('general.login_snack_bar', {name: userData.name || userData.uid}))
+  }
 }
 
 definePageMeta({

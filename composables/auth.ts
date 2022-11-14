@@ -17,19 +17,19 @@ export const useAuth = () => {
   }
 
   const loginWithCookie = async () => {
-    let { data } = await useService<SessionResponse>('/session')
-    user.value = data.value?.user
-    return data.value?.user
+    const data = await useService<SessionResponse>('/session')
+    user.value = data.user
+    return data.user
   }
 
   const loginWithPayload = async (payload:Payload) => {
-    const { data } = await useService<SessionResponse>('/session', {
+    const data = await useService<SessionResponse>('/session', {
       method: 'POST',
       body: payload,
     })
     console.log(data)
-    user.value = data.value?.user ?? null
-    return data.value?.user
+    user.value = data.user ?? null
+    return data.user
   }
 
   return { user, loginWithPayload, loginWithCookie, logout, isLogin, loginTrying }

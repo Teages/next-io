@@ -8,7 +8,9 @@
   <AlertBox />
 </template>
 
-<script setup>
+<script setup lang="ts">
+import { FetchError } from 'ohmyfetch';
+
 // i18n
 (() => {
   const headers = useRequestHeaders(['accept-language'])
@@ -45,8 +47,11 @@
   if (process.client) {
     auth.loginTrying.value = true
     await wait() // Idk but the nex line will return null if I don't wait a millisecond
-    const user = await auth.loginWithCookie()
-    console.log(user)
+    const user = await auth.loginWithCookie().catch((error:FetchError) => {
+      if (error.response?.status != 401) {
+        console.log(`auto login err(code: ${error.response?.status}):`, error.data)
+      }
+    })
     auth.loginTrying.value = false
   }
 })();

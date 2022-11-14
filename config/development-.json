@@ -1,10 +1,10 @@
 {
   "assetURL": "https://assets.cytoid.io",
   "staticURL": "https://static.cytoid.io",
-  "serviceURLServer": "http://localhost:4000",
-  "serviceURLClient": "http://localhost:4000",
+  "serviceURLServer": "http://api:4000",
+  "serviceURLClient": "https://services.cytoid.io",
   "imageURL": "https://images.cytoid.io",
   "webURL": "http://localhost:3000",
-  "captchaKey": "6LfBxAEjAAAAALCTR6Y7b3KWYrWF6EnXpvGE7yB-",
+  "captchaKey": "6Le6KqsUAAAAANemJwIe18ld-0kKSQn9aqR4-ltM",
   "analyticsCode": "UA-127631599-1"
 }
