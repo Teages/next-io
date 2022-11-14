@@ -4,6 +4,7 @@ import { useService } from "./services"
 export const useAuth = () => {
   const user : Ref<UserData | null | undefined> = useState('user')
   const cookie = useSavedCookie<String | null>("cyt:sess")
+  const services = useService()
   
   const isLogin = () => !(user.value == null)
   const loginTrying = useState(() => false)
@@ -11,19 +12,19 @@ export const useAuth = () => {
   const logout = async () => {
     user.value = null
     cookie.value = null
-    return await useService<SessionResponse>('/session', {
+    return await services<SessionResponse>('/session', {
       method: 'DELETE'
     })
   }
 
   const loginWithCookie = async () => {
-    const data = await useService<SessionResponse>('/session')
+    const data = await services<SessionResponse>('/session')
     user.value = data.user
     return data.user
   }
 
   const loginWithPayload = async (payload:Payload) => {
-    const data = await useService<SessionResponse>('/session', {
+    const data = await services<SessionResponse>('/session', {
       method: 'POST',
       body: payload,
     })

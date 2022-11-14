@@ -1,7 +1,7 @@
 {
   "assetURL": "https://assets.cytoid.io",
   "staticURL": "https://static.cytoid.io",
-  "serviceURLServer": "http://api:4000",
+  "serviceURLServer": "https://services.cytoid.io",
   "serviceURLClient": "https://services.cytoid.io",
   "imageURL": "https://images.cytoid.io",
   "webURL": "http://localhost:3000",

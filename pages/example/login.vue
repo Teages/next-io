@@ -76,6 +76,7 @@
 
 <script setup>
 const auth = useAuth()
+const services = useService()
 const cookie = useSavedCookie("cyt:sess")
 const loginForm = {
   username: "",
@@ -87,7 +88,7 @@ const loginCookie = ref("")
 
 const login = async () => {
   const captchaToken = await useVueReCaptcha()
-  const userData = await useService('/session', {
+  const userData = await services('/session', {
     method: "POST",
     body: {
       ...loginForm,

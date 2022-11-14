@@ -1,10 +1,15 @@
 import { $fetch } from 'ohmyfetch'
-import config from 'config'
 
-export const useService = $fetch.create({
-  baseURL: 'http://localhost:4000',
-  credentials: 'include'
-})
+// const services = useService()
+// services('/url')
+export const useService = () => {
+  const config = useRuntimeConfig()
+  const baseURL = config.public.apiURL
+  return $fetch.create({
+    baseURL: baseURL,
+    credentials: 'include'
+  })
+}
 
 export function useServiceUrl(url:string) {
   const config = useRuntimeConfig()
