@@ -137,7 +137,11 @@ const loginWithProvider = (provider:string) => {
 }
 
 function loginNext() {
-
+  if (route.query.origin) {
+    router.replace({path: route.query.origin.toString()})
+  } else {
+    router.replace({name: 'settings-account'})
+  }
 }
 
 definePageMeta({
