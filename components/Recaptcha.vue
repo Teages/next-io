@@ -1,6 +1,6 @@
 <template>
   <ClientOnly>
-    <VueRecaptcha ref="captcha" :sitekey="sitekey" size="invisible"
+    <VueRecaptcha ref="captcha" :sitekey="sitekey" recaptcha-host="www.recaptcha.net" size="invisible"
       badge="bottomleft" @verify="onVerify" @expired="onExpired" />
   </ClientOnly>
 </template>
