@@ -43,5 +43,5 @@
 <script setup>
 const route = useRoute()
 const services = useService()
-const { data } = await services('/creditmeta')
+const data = await services('/creditmeta')
 </script>
