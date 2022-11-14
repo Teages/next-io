@@ -54,11 +54,22 @@ export default defineNuxtConfig({
       description: pkg.description,
     }
   },
+
+  // nitro: {
+  //   devProxy: {
+  //     '/services': {
+  //       target: config.get('serviceURLServer'),
+  //       cookieDomainRewrite: {
+  //         'cytoid.io': 'localhost'
+  //       }
+  //     }
+  //   }
+  // }
   
   proxy: {
     options: [
       {
-        target: config.get('serviceURLClient'),
+        target: config.get('serviceURLServer'),
         changeOrigin: true,
         pathRewrite: {
           '^/services': '/'
@@ -69,7 +80,8 @@ export default defineNuxtConfig({
         ],
         headers: {
           'user-agent': process.env.SERVICES_UA ?? ''
-        }
+        },
+        cookieDomainRewrite: config.get('cookieDomain')
       }
     ]
   }

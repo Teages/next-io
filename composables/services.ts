@@ -1,7 +1,5 @@
 import { $fetch } from 'ohmyfetch'
 
-// const services = useService()
-// services('/url')
 export const useService = () => {
   const config = useRuntimeConfig()
   const baseURL = config.public.apiURL
