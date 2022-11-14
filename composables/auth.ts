@@ -28,7 +28,7 @@ export const useAuth = () => {
       method: 'POST',
       body: payload,
     })
-    console.log(data)
+    // console.log(data)
     user.value = data.user ?? null
     return data.user
   }

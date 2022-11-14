@@ -80,28 +80,28 @@ const loginWithPayload = async () => {
   }
 
   const captchaToken = await useCaptcha()
-  console.log(captchaToken)
+  // console.log(captchaToken)
   const userData = await auth.loginWithPayload({
     ...loginForm,
     captcha: captchaToken
   }).catch((error:FetchError) => {
     const code = error.response?.status ?? 0
     if (code == 401) {
-      console.log(t('general.login_password_error'))
+      errorAlert(t('general.login_password_error'))
       return
     } else if (code == 403) {
-      console.log(t('general.login_inactive_error'))
+      warningAlert(t('general.login_inactive_error'))
       return
     } else if (code == 404) {
-      console.log(t('general.login_username_error'))
+      errorAlert(t('general.login_username_error'))
       return
     } else {
       console.log(`Unknown error(${code}): `, error)
     }
   })
-  console.log(userData)
+  // console.log(userData)
   if (userData) {
-    console.log(t('general.login_snack_bar', {name: userData.name || userData.uid}))
+    successAlert(t('general.login_snack_bar', {name: userData.name || userData.uid}))
     loginNext()
   }
 }
@@ -121,7 +121,7 @@ const loginWithProvider = (provider:string) => {
     window.removeEventListener('message', providerResponded)
     if (event.data.user) {
       auth.user.value = event.data.user
-      console.log(t('general.login_snack_bar', {name: event.data.user.name || event.data.user.uid}))
+      successAlert(t('general.login_snack_bar', {name: event.data.user.name || event.data.user.uid}))
       loginNext()
     } else if (event.data.token && event.data.provider) {
       router.replace({
