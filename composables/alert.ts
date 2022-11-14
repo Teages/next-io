@@ -1,40 +1,34 @@
-const pendingAlert = ref([])
-
-const alertExist = 3000 // ms
+import { Ref } from "vue"
 
 export const useAlert = () => {
-  const running = ref(false)
-  const showingAlert = ref([])
+  const alerts:Ref<alertData[]> = useState(() => [])
 
   const addAlert = (alert:alertData) => {
+    alerts.value.push({
+      ...alert,
+      loading: useState(() => null)
+    })
+  }
 
-    if (!running) {
-      updateAlert()
+  const addLoadingAlert = (alert:alertData) => {
+    const loading = useState(() => true)
+    alerts.value.push({
+      ...alert,
+      loading: loading
+    })
+    return () => {
+      loading.value = false
     }
   }
 
-  return {showingAlert, addAlert, pendingAlert}
-
-  function updateAlert() {
-
-    if (pendingAlert.value.length + showingAlert.value.length > 0) {
-      running.value = true
-      setTimeout(updateAlert, 500)
-    } else {
-      running.value = false
-    }
-  }
+  return { alerts, addAlert, addLoadingAlert }
 }
 
 
 interface alertData {
-  type: string,
+  type?: string,
   message: string,
   icon?: string,
-  details?: string
-}
-
-interface onboardAlert {
-  data: alertData,
-  timeout: number
+  details?: string,
+  loading?: Ref<boolean | null>
 }
