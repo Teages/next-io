@@ -1,7 +1,7 @@
 <template>
-  <BackToOld :url="route.path" />
 </template>
 
 <script setup>
-const route = useRoute()
+const router = useRouter()
+router.replace({name: 'session-login'})
 </script>

@@ -36,7 +36,7 @@
         <div class="dropdown dropdown-end">
           <label tabindex="0" class="btn btn-sm">Loading...</label>
           <ul tabindex="0" class="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-            <li><a>{{ $t('general.signout_btn')}}</a></li>
+            <li><a @click="logout">{{ $t('general.signout_btn')}}</a></li>
           </ul>
         </div>
       </div>
@@ -70,8 +70,15 @@
 
 <script setup>
 const auth = useAuth()
+const router = useRouter()
 const profileDialog = ref(false)
 
 const profileDialogDom = ref()
 onClickOutside(profileDialogDom, () => { profileDialog.value = false })
+
+const logout = async () => {
+  console.log('user logout')
+  await auth.logout()
+  router.push({path: '/'})
+}
 </script>
