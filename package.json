@@ -29,7 +29,7 @@
     "marked": "^4.2.2",
     "nuxt-icon": "^0.1.7",
     "nuxt-proxy": "^0.3.2",
-    "recaptcha-v3": "^1.10.0",
-    "sanitize-html": "^2.7.3"
+    "sanitize-html": "^2.7.3",
+    "vue-recaptcha": "^2.0.3"
   }
 }

@@ -34,6 +34,7 @@
           </label>
         </div>
         <div class="form-control mt-2">
+          <Recaptcha ref="captcha" />
           <button class="btn btn-primary" @click="loginWithPayload">{{ $t('general.login_btn') }}</button>
         </div>
         <div class="flex w-full justify-around">
@@ -63,8 +64,10 @@ import { FetchError } from 'ohmyfetch';
 const { t } = useI18n()
 const router = useRouter()
 const route = useRoute()
-
 const auth = useAuth()
+
+const captcha = ref()
+
 const loginForm = {
   username: "",
   password: "",
@@ -79,7 +82,7 @@ const loginWithPayload = async () => {
     return
   }
 
-  const captchaToken = await useCaptcha()
+  const captchaToken = await captcha.value.execute()
   // console.log(captchaToken)
   const userData = await auth.loginWithPayload({
     ...loginForm,

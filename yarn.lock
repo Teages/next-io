@@ -4979,11 +4979,6 @@ readdirp@~3.6.0:
   dependencies:
     picomatch "^2.2.1"
 
-recaptcha-v3@^1.10.0:
-  version "1.10.0"
-  resolved "https://mirrors.cloud.tencent.com/npm/recaptcha-v3/-/recaptcha-v3-1.10.0.tgz#f966b5a0d8021fd2ed85ac4be832f6acb6ec1ed1"
-  integrity sha512-aGTxYSk3FFNKnXeKDbLpgRDRyIHRZNBF5HyaXXAN1Aj4TSyyZvmoAn9CylvpqLV3pYpIQavwc+2rzhNFn5SsLQ==
-
 redis-errors@^1.0.0, redis-errors@^1.2.0:
   version "1.2.0"
   resolved "https://registry.npmmirror.com/redis-errors/-/redis-errors-1.2.0.tgz#eb62d2adb15e4eaf4610c04afe1529384250abad"
@@ -5951,6 +5946,13 @@ vue-i18n@^9.3.0-beta.6:
     "@intlify/shared" "9.3.0-beta.6"
     "@intlify/vue-devtools" "9.3.0-beta.6"
     "@vue/devtools-api" "^6.2.1"
+
+vue-recaptcha@^2.0.3:
+  version "2.0.3"
+  resolved "https://mirrors.cloud.tencent.com/npm/vue-recaptcha/-/vue-recaptcha-2.0.3.tgz#7e035d4302cff921d53d320e237ed1912985d922"
+  integrity sha512-Rz0kLIETUgmOrp7CxFvaFE65DkhKdWu4pteWOTt2i+yTajTHPqtyOW6DqTg0BvALWTm+WUvWVV7k5XXFijQnBw==
+  dependencies:
+    vue-demi "^0.13.11"
 
 vue-router@^4.1.6:
   version "4.1.6"
