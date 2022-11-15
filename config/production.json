@@ -2,10 +2,10 @@
   "assetURL": "https://assets.cytoid.io",
   "staticURL": "https://static.cytoid.io",
   "serviceURLServer": "https://services.cytoid.io",
-  "serviceURLClient": "https://next-io.teages.xyz/services",
+  "serviceURLClient": "https://next-io.cytusol.xyz/services",
   "imageURL": "https://images.cytoid.io",
-  "webURL": "https://next-io.teages.xyz",
-  "cookieDomain": "next-io.teages.xyz",
+  "webURL": "https://next-io.cytusol.xyz",
+  "cookieDomain": "next-io.cytusol.xyz",
   "captchaKey": "6Le6KqsUAAAAANemJwIe18ld-0kKSQn9aqR4-ltM",
   "analyticsCode": "UA-127631599-1"
 }
