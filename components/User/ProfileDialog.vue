@@ -10,7 +10,7 @@
       </div>
 
       <div class="card-body p-4">
-        <ul class="menu bg-base-100 w-full p-0 rounded-box">
+        <ul class="menu bg-base-100 w-full p-0">
           <li class="hover-bordered">
             <NuxtLink :to="{name: 'profile-id', params: { id: auth.user.value.uid || auth.user.value.id } }">
               <Icon name="mdi:account" size="24" /> {{ $t('general.profile') }}

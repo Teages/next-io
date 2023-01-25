@@ -6,8 +6,8 @@ export const useAuth = () => {
   const cookie = useSavedCookie<String | null>("cyt:sess")
   const services = useService()
   
-  const isLogin = () => !(user.value == null)
-  const loginTrying = useState(() => false)
+  const isLogin = () => !(user.value == null) // is a valid login
+  const loginTrying = useState(() => false) // updating login state
 
   const logout = async () => {
     user.value = null

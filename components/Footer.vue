@@ -7,9 +7,9 @@
         <NuxtLink class="clickable select-none" to="https://github.com/Cytoid/">{{ $t('general.status') }}</NuxtLink>|
         <NuxtLink class="clickable select-none" to="https://github.com/Cytoid/https://github.com/Cytoid/">GitHub</NuxtLink>|
         <NuxtLink class="clickable select-none" to="/credits">{{ $t('general.credits') }}</NuxtLink>|
-        <div class="dropdown dropdown-top dropdown-hover dropdown-end">
-          <a class="clickable select-none">
-            <Icon name="mdi:translate" size="16" /> {{ $t('general.language') }}
+        <div ref="langSelect" :class="addClassIf('dropdown dropdown-top dropdown-hover dropdown-end', 'dropdown-open', keepShowLangSelectBox)">
+          <a class="clickable select-none" @click="keepShowLangSelectBox = !keepShowLangSelectBox">
+            <Icon name="mdi:translate" size="16" /> {{ $t('general.language') }} {{ keepShowLangSelectBox }}
           </a>
           <ul tabindex="0" class="dropdown-content menu menu-compact p-2 shadow bg-base-200 rounded-box w-44">
             <li v-for="code in availableLocales">
@@ -31,4 +31,8 @@
 
 <script setup>
 const { availableLocales, locale, setLocale } = useLocales()
+
+const langSelect = ref(null)
+const keepShowLangSelectBox = ref(false)
+onClickOutside(langSelect, () => keepShowLangSelectBox.value = false)
 </script>

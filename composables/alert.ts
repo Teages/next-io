@@ -66,6 +66,20 @@ export const errorAlert = (msg:any, opts?:alertOptions) => {
   })
 }
 
+export const handleErrorToast = (error:Error) => {
+  errorAlert(getMessage(error))
+}
+
+function getMessage (err:any) {
+  if (err.response?.status === 404) {
+    return 'Resource Not Found'
+  }
+  return err.response?.data.message ||
+    err.response?.data.name ||
+    err.response?.data ||
+    err.message || 'Unknown Error'
+}
+
 type alertType = 'info' | 'success' | 'warning' | 'error' | 'none'
 
 interface alertOptions {

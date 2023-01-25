@@ -25,6 +25,7 @@
     "@types/sanitize-html": "^2.6.2",
     "@vueuse/nuxt": "^9.4.0",
     "config": "^3.3.8",
+    "date-fns": "^2.29.3",
     "dotenv": "^16.0.3",
     "marked": "^4.2.2",
     "nuxt-icon": "^0.1.7",

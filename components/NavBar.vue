@@ -52,7 +52,7 @@
           </button>
         </div>
         <UserAvatar
-          :avatar="'https://assets.cytoid.io/avatar/5vw984LSlIpLW5DhD8N3RdfroM4y27vvZ88b7R6hRvp0Zk5gSa2PURTHvQ8Cu9gMw'"
+          :avatar="avatarURL(auth.user.value.id)"
           :name="auth.user.value.name || auth.user.value.uid" class="h-8 clickable flex-row-reverse"
           @click="profileDialog = !profileDialog" />
         <Transition>
