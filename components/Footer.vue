@@ -9,7 +9,7 @@
         <NuxtLink class="clickable select-none" to="/credits">{{ $t('general.credits') }}</NuxtLink>|
         <div ref="langSelect" :class="addClassIf('dropdown dropdown-top dropdown-hover dropdown-end', 'dropdown-open', keepShowLangSelectBox)">
           <a class="clickable select-none" @click="keepShowLangSelectBox = !keepShowLangSelectBox">
-            <Icon name="mdi:translate" size="16" /> {{ $t('general.language') }} {{ keepShowLangSelectBox }}
+            <Icon name="mdi:translate" size="16" /> {{ $t('general.language') }}
           </a>
           <ul tabindex="0" class="dropdown-content menu menu-compact p-2 shadow bg-base-200 rounded-box w-44">
             <li v-for="code in availableLocales">

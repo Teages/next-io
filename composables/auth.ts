@@ -33,7 +33,15 @@ export const useAuth = () => {
     return data.user
   }
 
-  return { user, loginWithPayload, loginWithCookie, logout, isLogin, loginTrying }
+  const toLogin = (back?:string) => {
+    const route = useRoute()
+    const router = useRouter()
+    router.push({path: '/session/login', query: {
+      origin: encodeURIComponent(back === undefined ? route.path : back)
+    }})
+  }
+
+  return { user, loginWithPayload, loginWithCookie, logout, isLogin, loginTrying, toLogin }
 }
 
 interface SessionResponse {

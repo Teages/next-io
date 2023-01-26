@@ -1,6 +1,7 @@
 <template>
   <BackToOld :url="route.path" />
   <LayoutContents>
+    <Recaptcha ref="captcha" />
     <template #contentTitle>
       <h1 class="text-5xl font-bold">{{ data.level.title }}</h1>
       <p class="text-xl pt-6" v-if="data.level.metadata.artist">{{ data.level.metadata.artist.name }}</p>
@@ -10,7 +11,7 @@
         </template>
       </div>
       <div class="flex gap-3 flex-wrap max-w-xl">
-        <button class="btn btn-primary">
+        <button class="btn btn-primary" @click="downloadLevel">
           <Icon name="material-symbols:download-sharp" size="24" class="mr-2" />
           {{ $t('level_details.download_btn', { size: formatSize(data.level.size)}) }}
         </button>
@@ -171,8 +172,8 @@
             :class="addClassIf('tab', 'tab-active', selectedDiffRank === 'extreme')"
             @click="selectedDiffRank = 'extreme'">Extreme</a>
         </div>
-
-        <div class="overflow-x-auto select-none">
+        <progress :class="addClassIf('progress progress-primary', 'opacity-0', !loadingRank)"></progress>
+        <div :class="addClassIf('overflow-x-auto select-none', 'opacity-50', loadingRank)">
           <table class="table table-compact w-full">
             <thead>
               <tr>
@@ -188,13 +189,16 @@
             </thead>
             <tbody>
               <tr v-for="(rank, index) in rankData.chart.leaderboard">
-                <th>#{{ index + diffRankPage * 10 - 9 }}</th>
+                <th>#{{ index + realDiffRankPage * 10 - 9 }}</th>
                 <td class="text-sm">
                   <UserAvatar :avatar="rank.owner.avatar.small" :name="rank.owner.name || rank.owner.uid"
                     :uid="rank.owner.uid"
                     class="h-8 w-fit clickable bg-transparent" />
                 </td>
-                <td class="font-semibold">{{ rank.score }}</td>
+                <td class="font-semibold">
+                  <ScoreBadge :score="rank.score" />
+                  {{ rank.score }}
+                </td>
                 <td class="font-semibold">
                   {{ (rank.accuracy * 100).toFixed(2) }}%
                 </td>
@@ -228,7 +232,7 @@
             <button class="btn btn-sm" :disabled="diffRankPage === 1" @click="diffRankPage -= 1">
               <Icon name="ic:round-keyboard-arrow-left" />
             </button>
-            <button class="btn btn-sm btn-active">{{ diffRankPage }}</button>
+            <button class="btn btn-sm btn-active">{{ diffRankPage }} / {{ Math.ceil(rankData.chart.numPlayers / 10) }}</button>
             <button class="btn btn-sm" :disabled="rankData.chart.numPlayers <= diffRankPage * 10"
               @click="diffRankPage += 1">
               <Icon name="ic:round-keyboard-arrow-right" />
@@ -252,6 +256,7 @@ const route = useRoute()
 const services = useService()
 const { setBackground } = useBackground()
 const levelId = route.params.id
+const captcha = ref(null)
 
 const query = gql`
   query FetchLevel($uid: String!){
@@ -360,11 +365,37 @@ data.value.level.charts.sort((a, b) => {
   }
 })
 
+// download
+const downloadLink = ref('')
+const downloadLevel = async () => {
+  if (!auth.isLogin()) {
+    auth.toLogin()
+    return
+  }
+  if (downloadLink.value === '') {
+    const downloadToken = await captcha.value.execute()
+    try {
+      const res = await services(`/levels/${levelId}/resources`, {
+        method: 'POST',
+        body: {
+          captcha: downloadToken
+        }
+      })
+      downloadLink.value = res.package 
+    } catch (e) {
+      errorAlert(e.name)
+    }
+  }
+  window.open(downloadLink.value)
+};
+
 // ranking
 const selectedDiffRank = ref((() => {
   return data.value.level.charts[data.value.level.charts.length - 1].type
 })());
 const diffRankPage = ref(1)
+const realDiffRankPage = ref(1)
+const loadingRank = ref(true)
 
 const { data: rankData } = await syncRanking()
 
@@ -372,13 +403,17 @@ watch(selectedDiffRank, async () => {
   const { data: newRanking } = await syncRanking()
   rankData.value = newRanking.value
 })
-watch(diffRankPage, async () => {
+watch(diffRankPage, async (val, oldVal) => {
   const { data: newRanking } = await syncRanking()
   rankData.value = newRanking.value
+  realDiffRankPage.value = val
 })
 
 async function syncRanking() {
-  return await useAsyncQuery(rankingQuery, { levelUid: levelId, type: selectedDiffRank.value, start: (diffRankPage.value - 1) * 10 })
+  loadingRank.value = true
+  const ans = await useAsyncQuery(rankingQuery, { levelUid: levelId, type: selectedDiffRank.value, start: (diffRankPage.value - 1) * 10 })
+  loadingRank.value = false
+  return ans
 }
 
 // rating
@@ -473,6 +508,5 @@ function formatSize(size) {
 definePageMeta({
   layout: "contents"
 })
-console.log(data.value.level.bundle.backgroundImage.original)
 setBackground(data.value.level.bundle.backgroundImage.original)
 </script>
