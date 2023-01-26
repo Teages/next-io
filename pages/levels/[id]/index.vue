@@ -250,6 +250,7 @@
 const auth = useAuth()
 const route = useRoute()
 const services = useService()
+const { setBackground } = useBackground()
 const levelId = route.params.id
 
 const query = gql`
@@ -472,4 +473,6 @@ function formatSize(size) {
 definePageMeta({
   layout: "contents"
 })
+console.log(data.value.level.bundle.backgroundImage.original)
+setBackground(data.value.level.bundle.backgroundImage.original)
 </script>
