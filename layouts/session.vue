@@ -13,4 +13,6 @@
 
 <script setup>
 import Layout from './background.vue'
+const { setBackground } = useBackground()
+setBackground('https://static.cytoid.io/img/session.jpg')
 </script>

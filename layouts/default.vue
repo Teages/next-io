@@ -4,7 +4,7 @@
       <NavBar />
     </div>
     <div class="flex-1 w-full max-w-screen-2xl">
-      <div class="py-4 px-4 sm:px-12">
+      <div class="py-4 px-4 lg:px-12">
         <slot />
       </div>
     </div>

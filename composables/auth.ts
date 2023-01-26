@@ -6,8 +6,8 @@ export const useAuth = () => {
   const cookie = useSavedCookie<String | null>("cyt:sess")
   const services = useService()
   
-  const isLogin = () => !(user.value == null)
-  const loginTrying = useState(() => false)
+  const isLogin = () => !(user.value == null) // is a valid login
+  const loginTrying = useState(() => false) // updating login state
 
   const logout = async () => {
     user.value = null
@@ -33,7 +33,15 @@ export const useAuth = () => {
     return data.user
   }
 
-  return { user, loginWithPayload, loginWithCookie, logout, isLogin, loginTrying }
+  const toLogin = (back?:string) => {
+    const route = useRoute()
+    const router = useRouter()
+    router.push({path: '/session/login', query: {
+      origin: encodeURIComponent(back === undefined ? route.path : back)
+    }})
+  }
+
+  return { user, loginWithPayload, loginWithCookie, logout, isLogin, loginTrying, toLogin }
 }
 
 interface SessionResponse {

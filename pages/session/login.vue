@@ -2,15 +2,15 @@
   <div class="my-2">
     <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
       <div class="card-body">
-        <h2 class="card-title">{{ $t('login.title') }}</h2>
-        <p>{{ $t('login.subtitle') }}</p>
+        <h2 class="card-title">{{ t('login.title') }}</h2>
+        <p>{{ t('login.subtitle') }}</p>
         <div class="mt-2" />
         <div class="form-control">
           <label class="input-group w-full">
             <span class="bg-neutral">
               <Icon name="ph:user-bold" />
             </span>
-            <input v-model="loginForm.username" type="text" :placeholder="$t('login.username_field_placeholder')"
+            <input v-model="loginForm.username" type="text" :placeholder="t('login.username_field_placeholder')"
               class="input input-bordered flex-1" />
           </label>
         </div>
@@ -19,23 +19,23 @@
             <span class="bg-neutral">
               <Icon name="material-symbols:key" />
             </span>
-            <input v-model="loginForm.password" type="password" :placeholder="$t('login.password_field_placeholder')"
+            <input v-model="loginForm.password" type="password" :placeholder="t('login.password_field_placeholder')"
               class="input input-bordered flex-1" />
           </label>
           <label class="label">
-            <a href="#" class="label-text-alt link link-hover ml-auto">{{ $t('general.forgot_password_link_title')
+            <a href="#" class="label-text-alt link link-hover ml-auto">{{ t('general.forgot_password_link_title')
             }}</a>
           </label>
         </div>
         <div class="form-control">
           <label class="label cursor-pointer">
-            <span class="label-text">{{ $t('login.remember_me_checkbox_title') }}</span>
+            <span class="label-text">{{ t('login.remember_me_checkbox_title') }}</span>
             <input type="checkbox" :checked="loginForm.remember" class="checkbox checkbox-primary" />
           </label>
         </div>
         <div class="form-control mt-2">
           <Recaptcha ref="captcha" />
-          <button class="btn btn-primary" @click="loginWithPayload">{{ $t('general.login_btn') }}</button>
+          <button class="btn btn-primary" @click="loginWithPayload">{{ t('general.login_btn') }}</button>
         </div>
         <div class="flex w-full justify-around">
           <button class="btn btn-link" @click="loginWithProvider('google')">
@@ -49,10 +49,10 @@
           </button>
         </div>
         <div class="divider">OR</div>
-        <h2 class="card-title">{{ $t('login.new_user_welcome_title') }}</h2>
-        <p>{{ $t('login.new_user_welcome_content') }}</p>
+        <h2 class="card-title">{{ t('login.new_user_welcome_title') }}</h2>
+        <p>{{ t('login.new_user_welcome_content') }}</p>
         <div class="form-control mt-2">
-          <NuxtLink class="btn btn-primary" to="/session/signup">{{ $t('general.signup_btn') }}</NuxtLink>
+          <NuxtLink class="btn btn-primary" to="/session/signup">{{ t('general.signup_btn') }}</NuxtLink>
         </div>
       </div>
     </div>
@@ -141,7 +141,7 @@ const loginWithProvider = (provider:string) => {
 
 function loginNext() {
   if (route.query.origin) {
-    router.replace({path: route.query.origin.toString()})
+    router.replace({path: decodeURIComponent(route.query.origin.toString())})
   } else {
     router.replace({name: 'settings-account'})
   }

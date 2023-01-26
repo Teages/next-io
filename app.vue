@@ -66,10 +66,27 @@ body {
 }
 
 body {
-  @apply bg-black bg-opacity-30
+  @apply bg-black bg-opacity-30 break-words
 }
 
 /* Daisy Custom */
+
+.badge {
+  @apply select-none;
+}
+
+.card-subtitle {
+  @apply text-neutral-content font-bold uppercase opacity-80;
+}
+
+.prose-sm a {
+  @apply text-primary;
+}
+
+.btn-disabled, .btn-disabled:hover, .btn[disabled], .btn[disabled]:hover {
+  --tw-bg-opacity: 0.8;
+  --tw-text-opacity: 0.6;
+}
 
 .btn-sm {
   @apply font-medium;
