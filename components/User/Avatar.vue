@@ -27,7 +27,7 @@
 defineProps({
   avatar: {
     type: String,
-    required: true
+    default: 'https://artifacts.cytoid.io/avatar.jpg'
   },
   name: {
     type: String,

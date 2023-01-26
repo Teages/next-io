@@ -1,5 +1,4 @@
 <template>
-  <BackToOld :url="route.path" />
   <LayoutContents>
     <Recaptcha ref="captcha" />
     <template #contentTitle>
@@ -7,7 +6,7 @@
       <p class="text-xl pt-6" v-if="data.level.metadata.artist">{{ data.level.metadata.artist.name }}</p>
       <div class="py-6 flex gap-2 flex-wrap max-w-xl">
         <template v-for="chart in data.level.charts">
-          <LevelDiffBadge :type="chart.type" :difficulty="chart.difficulty" :notesCount="chart.notesCount" />
+          <LevelDiffBadge :type="chart.type" :difficulty="chart.difficulty" :name="chart.name" :notesCount="chart.notesCount" />
         </template>
       </div>
       <div class="flex gap-3 flex-wrap max-w-xl">
@@ -247,6 +246,7 @@
 
       </div>
     </div>
+    <CommentThread category="level" :thread="levelId" :getToken="getToken" />
   </LayoutContents>
 </template>
 
@@ -257,6 +257,10 @@ const services = useService()
 const { setBackground } = useBackground()
 const levelId = route.params.id
 const captcha = ref(null)
+
+const getToken = async () => {
+  return await captcha.value.execute()
+}
 
 const query = gql`
   query FetchLevel($uid: String!){
@@ -388,10 +392,10 @@ const downloadLevel = async () => {
   }
   window.open(downloadLink.value)
 };
-
+console.log(data.value.level.charts)
 // ranking
 const selectedDiffRank = ref((() => {
-  return data.value.level.charts[data.value.level.charts.length - 1].type
+  return data.value.level.charts[0].type
 })());
 const diffRankPage = ref(1)
 const realDiffRankPage = ref(1)
