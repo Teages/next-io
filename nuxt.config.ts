@@ -55,34 +55,39 @@ export default defineNuxtConfig({
     }
   },
 
-  // nitro: {
-  //   devProxy: {
-  //     '/services': {
-  //       target: config.get('serviceURLServer'),
-  //       cookieDomainRewrite: {
-  //         'cytoid.io': 'localhost'
-  //       }
-  //     }
-  //   }
-  // }
-  
-  proxy: {
-    options: [
-      {
+  nitro: {
+    devProxy: {
+      '/services': {
         target: config.get('serviceURLServer'),
         changeOrigin: true,
-        pathRewrite: {
-          '^/services': '/'
-        },
-        pathFilter: [
-          '/services',
-          '/graphql'
-        ],
-        headers: {
-          'user-agent': process.env.SERVICES_UA ?? 'CytoidClient/next-io.teages.xyz'
-        },
-        cookieDomainRewrite: config.get('cookieDomain')
+        prependPath: false,
+        ws: true,
+      },
+      '/graphql': {
+        target: config.get('serviceURLServer') + '/graphql',
+        changeOrigin: true,
+        ws: true,
       }
-    ]
-  }
+    }
+  },
+  
+  // proxy: {
+  //   options: [
+  //     {
+  //       target: config.get('serviceURLServer'),
+  //       changeOrigin: true,
+  //       pathRewrite: {
+  //         '^/services': '/'
+  //       },
+  //       pathFilter: [
+  //         '/services',
+  //         '/graphql'
+  //       ],
+  //       headers: {
+  //         'user-agent': process.env.SERVICES_UA ?? 'CytoidClient/next-io.teages.xyz'
+  //       },
+  //       cookieDomainRewrite: config.get('cookieDomain')
+  //     }
+  //   ]
+  // }
 })
