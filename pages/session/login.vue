@@ -60,7 +60,7 @@
 </template>
 
 <script setup lang="ts">
-import { FetchError } from 'ohmyfetch';
+import { FetchError } from 'ofetch';
 const { t } = useI18n()
 const router = useRouter()
 const route = useRoute()

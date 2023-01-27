@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import { FetchError } from 'ohmyfetch';
+import { FetchError } from 'ofetch';
 
 // i18n
 (() => {
