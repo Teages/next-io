@@ -33,7 +33,7 @@ export default defineNuxtConfig({
           path: '/',
           secure: false,
         },
-        httpEndpoint: config.get('webURL') + '/graphql',
+        httpEndpoint: config.get('graphql'),
         httpLinkOptions: {
           credentials: 'include'
         },
