@@ -392,7 +392,6 @@ const downloadLevel = async () => {
   }
   window.open(downloadLink.value)
 };
-console.log(data.value.level.charts)
 // ranking
 const selectedDiffRank = ref((() => {
   return data.value.level.charts[0].type

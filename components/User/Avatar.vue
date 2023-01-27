@@ -10,7 +10,7 @@
     </p>
     <div v-if="name" class="w-2" />
   </a>
-  <NuxtLink v-else class="flex items-center bg-gray-700 bg-opacity-50 rounded-full select-none" :to="{name: 'profile-id', params: { id: uid }}">
+  <NuxtLink v-else class="flex items-center rounded-full select-none" :to="{name: 'profile-id', params: { id: uid }}">
     <div class="avatar h-full aspect-square">
       <div class="aspect-square rounded-full">
         <img :src="avatar" />

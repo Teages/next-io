@@ -1,9 +1,9 @@
-import { $fetch } from 'ohmyfetch'
+import { ofetch } from 'ofetch'
 
 export const useService = () => {
   const config = useRuntimeConfig()
   const baseURL = config.public.apiURL
-  return $fetch.create({
+  return ofetch.create({
     baseURL: baseURL,
     credentials: 'include'
   })

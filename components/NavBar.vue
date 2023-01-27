@@ -1,5 +1,5 @@
 <template>
-  <div class="navbar max-w-7xl m-auto sm:px-12">
+  <div class="navbar max-w-7xl m-auto sm:px-12 bg-gradient-to-b from-base-100/80 to-base-100/0">
     <div class="flex flex-1 gap-0">
       <div class="hidden sm:block">
         <NuxtLink class="btn btn-sm btn-ghost text-base-content font-medium tracking-wider hover:bg-transparent hover:text-primary" to="/">{{ $t('general.nav_home') }}</NuxtLink>
