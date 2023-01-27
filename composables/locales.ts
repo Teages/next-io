@@ -1,5 +1,10 @@
 import { formatDistanceToNow, parseISO, formatRelative } from 'date-fns'
-import { enUS, zhCN, zhTW, ptBR, th, vi, ja, es, id, cs, de, hu, ko } from 'date-fns/locale'
+//@ts-ignore
+import { enUS, zhCN, zhTW, ptBR, th, vi, ja, es, id, cs, de, hu, ko } from 'date-fns/locale/index.js'
+// ^ use this because https://github.com/date-fns/date-fns/issues/2629
+// import { enUS, zhCN, zhTW, ptBR, th, vi, ja, es, id, cs, de, hu, ko } from 'date-fns/locale'
+// ^ TODO: back to this after https://github.com/date-fns/date-fns/pull/3099
+
 
 export const useLocales = () => {
   const { availableLocales, locale, setLocale: i18nSetLocale } = useI18n()
