@@ -509,7 +509,13 @@ function formatSize(size) {
 }
 
 definePageMeta({
-  layout: "contents"
+  layout: "contents",
 })
 setBackground(data.value.level.bundle.backgroundImage.original)
+useHead(() => {
+  const meta = new Meta(data.value.level?.title || 'Level', data.value.level?.description || '')
+  meta.extend('author', data.value.level?.owner?.name || data.value.level?.owner?.uid)
+  meta.extend('og:image', data.value.level?.bundle?.background)
+  return meta
+})
 </script>

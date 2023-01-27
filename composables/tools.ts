@@ -1,4 +1,5 @@
 import { CookieOptions } from "#app"
+import sanitizeHtml from 'sanitize-html';
 
 export const returnIf = (b: boolean, value: any, noValue?: any) => {
   return b ? value : noValue
@@ -42,16 +43,17 @@ export class Meta {
   meta: { hid: string; name: string; content: string }[]
   title: string
   constructor(title:string, description:string, verb = null) {
-    if (description.length > 100) {
-      description = description.substring(0, 100)
+    let markedDescription = sanitizeHtml(useMarked(description), {allowedTags: []})
+    if (markedDescription.length > 100) {
+      markedDescription = markedDescription.substring(0, 100)
     }
     this.title = title + ' - Cytoid'
     if (verb) {
       this.title = verb + ' ' + this.title
     }
     this.meta = [
-      { hid: 'description', name: 'description', content: description },
-      { hid: 'og:description', name: 'og:description', content: description },
+      { hid: 'description', name: 'description', content: markedDescription },
+      { hid: 'og:description', name: 'og:description', content: markedDescription },
       { hid: 'name', name: 'name', content: title },
       { hid: 'og:title', name: 'og:title', content: title },
     ]
