@@ -1,9 +1,8 @@
 <template>
-  <BackToOld :url="route.path" />
+  <!-- <BackToOld :url="route.path" /> -->
   <div>
     <div class="card bg-base-100 shadow-xl">
       <div class="card-body">
-        {{ { search, order, sort, category, owner, page, featured, qualified } }}
         <div v-if="owner" class="flex items-center flex-wrap mb-4 gap-4">
           <div class="hidden"></div>
           <div class="badge badge-lg h-8 flex">
@@ -18,7 +17,7 @@
         <div class="form-control">
           <div class="input-group text-base-content">
             <input v-model="search" type="text" placeholder="Search levels..." class="input input-bordered w-full">
-            <button class="btn btn-square">
+            <button class="btn btn-primary btn-square" @click="updateSearch" :disabled="search === route.query.search">
               <Icon name="material-symbols:search" size="24" />
             </button>
           </div>
@@ -51,7 +50,7 @@
             <div class="pt-4 sm:pt-0">
               <p class="card-subtitle"> {{ $t('levels.sort_select_title') }} </p>
               <div class="btn-group pt-2">
-                <button :class="addClassIf('btn', 'btn-active', !(featured || qualified))" @click="featured = false; qualified = false">
+                <button :class="addClassIf('btn', 'btn-active', !(featured || qualified))" @click="selectAll">
                   {{ $t('levels.category_select_item_all') }}
                 </button>
                 <button :class="addClassIf('btn btn-fea', 'btn-active', featured)" @click="featured = !featured">
@@ -67,14 +66,10 @@
 
       </div>
     </div>
-
+    <progress v-if="loading" class="progress progress-info w-full"></progress>
     <template v-if="levels || true">
-      <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-4 mt-8 md:gap-6 xl:gap-8">
-        <LevelCard />
-        <LevelCard />
-        <LevelCard />
-        <LevelCard />
-        <LevelCard />
+      <div :class="addClassIf('grid md:grid-cols-2 xl:grid-cols-3 gap-4 mt-8 md:gap-6 xl:gap-8', 'opacity-60', loading)">
+        <LevelCard v-for="level in levels" :level="level" />
       </div>
       <div class="w-full flex justify-center sm:justify-end">
         <div class="flex pt-4">
@@ -106,45 +101,112 @@
 <script setup>
 const route = useRoute()
 const router = useRouter()
-
-// router: http://localhost:3000/levels?search=anime&sort=creation_date&order=desc&category=all&page=1&owner=teages_0v0
+const services = useService()
 
 const levels = ref([])
 const totalPagesCount = ref(0)
+const totalLevelsCount = ref(0)
+const loading = ref(true)
 
+// router
 const search = ref(route.query.search || '')
-const order = ref(route.query.order || 'desc')
-const sort = ref(route.query.sort || 'relevance')
-const category = ref(route.query.search || 'all')
-const owner = ref(route.query.owner || '')
-const page = ref(1)
-
-if (!isNaN(parseInt(route.query.page))) {
-  page.value = parseInt(route.query.page)
-  if (page.value < 1) {
-    page.value = 1
+const order = computed({
+  get() {
+    return route.query.order || 'desc'
+  },
+  set(newVal) {
+    updateRouter({ order: newVal })
   }
+})
+const sort = computed({
+  get() {
+    if (search.value !== '') {
+      return route.query.sort || 'relevance'
+    }
+    if (route.query.sort === 'relevance') {
+      return 'creation_date'
+    }
+    return route.query.sort || 'creation_date'
+  },
+  set(newVal) {
+    updateRouter({ sort: newVal })
+  }
+})
+const featured = computed({
+  get() {
+    return route.query.featured === 'true' || false
+  },
+  set(newVal) {
+    updateRouter({ featured: newVal })
+  }
+})
+const qualified = computed({
+  get() {
+    return route.query.qualified === 'true' || false
+  },
+  set(newVal) {
+    updateRouter({ qualified: newVal })
+  }
+})
+const selectAll = () => {
+  updateRouter({
+    qualified: false,
+    featured: false
+  })
+};
+const owner = computed({
+  get() {
+    return route.query.owner || ''
+  },
+  set(newVal) {
+    updateRouter({ owner: newVal })
+  }
+})
+const page = computed({
+  get() {
+    let count = parseInt(route.query.page) || 1
+    if (isNaN(count)) {
+      return 1
+    }
+    return count > 0 ? count : 1
+  },
+  set(newVal) {
+    updateRouter({ page: newVal })
+  }
+})
+
+const updateSearch = () => {
+  updateRouter({ search: search.value })
 }
 
-if (search.value === '' && sort.value === 'relevance') {
-  sort.value = 'creation_date'
-}
-
-const featured = ref(false)
-const qualified = ref(false)
-
-async function updateRouter() {
-  router.push({
+async function updateRouter(val) {
+  await router.replace({
     query: {
-      ...route.query
+      ...route.query,
+      ...val
     }
   })
+  syncData()
 }
 
 // data fetch
-
+const pageSize = 18
 async function syncData() {
-  console.log(baseURL(route.query))
+  loading.value = true
+  const url = baseURL(route.query)
+  const res = await services.raw(url, {
+    query: {
+      ...route.query,
+      sort: sort.value,
+      page: route.query.page - 1,
+      limit: pageSize
+    }
+  })
+  levels.value = [...res._data]
+  totalPagesCount.value = parseInt(res.headers.get('x-total-page')) || 0
+  totalLevelsCount.value = parseInt(res.headers.get('x-total-entries')) || 0
+
+  loading.value = false
   function baseURL(query) {
     if (query.search) {
       return '/search/levels'
@@ -155,7 +217,7 @@ async function syncData() {
     return '/levels'
   }
 }
-
+syncData()
 
 
 useHead({
