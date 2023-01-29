@@ -71,6 +71,13 @@ body {
 
 /* Cytoid */
 
+.bg-image-loading {
+  @apply bg-cover bg-center;
+  background-image: url('~/assets/loading.svg');
+  background-size: 20%;
+  background-repeat: no-repeat;
+}
+
 .category-badge-featured {
   @apply text-base-content font-bold border-none;
   background: linear-gradient(to right bottom, #b91d73, #f953c6);
