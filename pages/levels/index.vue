@@ -67,10 +67,11 @@
       </div>
     </div>
     <progress v-if="loading" class="progress progress-info w-full"></progress>
-    <template v-if="levels || true">
+    <template v-if="levels">
       <div :class="addClassIf('grid md:grid-cols-2 xl:grid-cols-3 gap-4 mt-8 md:gap-6 xl:gap-8', 'opacity-60', loading)">
         <LevelCard v-for="level in levels" :level="level" />
       </div>
+      <progress v-if="loading" class="progress progress-info w-full"></progress>
       <div class="w-full flex justify-center sm:justify-end">
         <div class="flex pt-4">
           <div class="flex-1" />
@@ -203,10 +204,11 @@ async function syncData() {
       limit: pageSize
     }
   })
-  levels.value = [...res._data]
   totalPagesCount.value = parseInt(res.headers.get('x-total-page')) || 0
   totalLevelsCount.value = parseInt(res.headers.get('x-total-entries')) || 0
 
+  levels.value = [...res._data]
+  window.scroll(0,0)
   loading.value = false
   function baseURL(query) {
     if (query.search) {
