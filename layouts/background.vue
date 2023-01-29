@@ -1,11 +1,11 @@
 <template>
-  <div v-if="background.source != ''" class="absolute select-none top-0 w-full h-fit flex" style="z-index: -1;">
-    <div class="relative bg-cover bg-center flex-1">
-      <img :src="background.source" class="w-full h-fit brightness-50" />
-    <div class="absolute bottom-0 h-1/2 w-full bg-gradient-to-b from-base-100/0 to-base-100" />
+  <div v-if="background.source != ''" class="absolute select-none w-full h-full top-0" style="z-index: -1;">
+    <div class="w-full h-screen sm:max-h-[100vw] bg-center bg-cover" :style="`background-image: url('${background.source}')`">  
+      <div class="absolute top-0 h-32 w-full bg-gradient-to-b from-base-100/60 to-base-100/0" />
+      <div class="absolute bottom-0 h-2/3 w-full bg-gradient-to-b from-base-100/0 to-base-100" />
     </div>
   </div>
-  <Layout class="z-10">
+  <Layout>
     <slot />
   </Layout>
 </template>

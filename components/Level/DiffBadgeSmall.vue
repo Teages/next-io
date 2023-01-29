@@ -1,11 +1,11 @@
 <template>
-  <div :class="`w-min max-w-xs diff-badge rounded-full diff-badge-${_type} tooltip tooltip-primary`" :data-tip="notesCount ? `${notesCount} notes` : ``">
-    <div class="diff-badge-body py-2 px-5 flex justify-center	items-center">
-      <div>
-        <span class="diff-badge-lv">Lv.</span>{{ _difficulty }}
-      </div>
-      <span class="diff-badge-name truncate ml-2">{{ _name }}</span>
-    </div>
+  <div :class="`tooltip tooltip-primary flex h-8 badge badge-lg diff-badge-${_type} space-x-2`" :data-tip="notesCount ? `${notesCount} notes` : ``">
+      <span>
+        {{ _name }}
+      </span>
+      <span>
+        {{ _difficulty }}
+      </span>
   </div>
 </template>
 
