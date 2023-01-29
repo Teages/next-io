@@ -197,8 +197,9 @@ async function syncData() {
   const res = await services.raw(url, {
     query: {
       ...route.query,
-      sort: sort.value,
-      page: route.query.page - 1,
+      sort: sort.value === 'relevance' ? undefined : sort.value,
+      order: order.value,
+      page: page.value - 1,
       limit: pageSize
     }
   })

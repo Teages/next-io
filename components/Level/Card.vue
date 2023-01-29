@@ -1,6 +1,7 @@
 <template>
   <div class="card min-w-84 max-h-60 h-60 bg-base-100 overflow-auto shadow-xl flex flex-col">
-    <div class="w-full flex-1 bg-cover bg-center" :style="`background-image: url('${level.cover?.thumbnail || level.bundle?.backgroundImage?.thumbnail}')`">
+    <NuxtLink :to="{name: 'levels-id', params: { id: level.uid } }" class="flex-1 flex bg-image-loading">
+      <div class="w-full flex-1 bg-cover bg-center" :style="`background-image: url('${level.cover?.thumbnail || level.bundle?.backgroundImage?.thumbnail}')`">
       <div class="h-full w-full bg-black/20">
         <div class="h-full w-full bg-black/40 hover:bg-black/0 transition-colors p-3 flex flex-col">
           <div class="w-full flex flex-row">
@@ -28,6 +29,7 @@
         </div>
       </div>
     </div>
+    </NuxtLink>
     <div class="py-4 px-2 card-body flex-none">
       <div class="w-full flex flex-row">
         <div class="flex items-center space-x-2">
