@@ -69,6 +69,37 @@ body {
   @apply bg-black bg-opacity-30 break-words
 }
 
+/* Cytoid */
+
+.category-badge-featured {
+  @apply text-base-content font-bold border-none;
+  background: linear-gradient(to right bottom, #b91d73, #f953c6);
+  order: 1;
+}
+.category-badge-qualified {
+  @apply text-base-content font-bold border-none;
+  background: linear-gradient(to right bottom, #278627, #82ba78);
+  order: 2;
+}
+
+.diff-badge-easy {
+  @apply text-base-content border-none;
+  background: linear-gradient(to bottom right, #4ca2cd, #67B26F);
+  order: 1;
+}
+
+.diff-badge-hard {
+  @apply text-base-content border-none;
+  background: linear-gradient(to top left, #B06AB3, #4568DC);
+  order: 2;
+}
+
+.diff-badge-extreme {
+  @apply text-base-content border-none;
+  background: linear-gradient(to top left, #6f0000, #200122);
+  order: 3;
+}
+
 /* Daisy Custom */
 
 .badge {
