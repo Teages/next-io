@@ -85,7 +85,7 @@ body {
 }
 .category-badge-qualified {
   @apply text-base-content font-bold border-none;
-  background: linear-gradient(to right bottom, #278627, #82ba78);
+  background: linear-gradient(to right bottom, #1D976C, #1cb068);
   order: 2;
 }
 

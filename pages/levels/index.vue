@@ -208,7 +208,9 @@ async function syncData() {
   totalLevelsCount.value = parseInt(res.headers.get('x-total-entries')) || 0
 
   levels.value = [...res._data]
-  window.scroll(0,0)
+  if (window) {
+    window.scroll(0,0)
+  }
   loading.value = false
   function baseURL(query) {
     if (query.search) {
