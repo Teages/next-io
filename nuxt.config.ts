@@ -80,11 +80,17 @@ export default defineNuxtConfig({
         changeOrigin: true,
         prependPath: false,
         ws: true,
+        cookieDomainRewrite: {
+          'cytoid.io': 'localhost'
+        }
       },
       '/graphql': {
         target: config.get('serviceURLServer') + '/graphql',
         changeOrigin: true,
         ws: true,
+        cookieDomainRewrite: {
+          'cytoid.io': 'localhost'
+        }
       }
     }
   },
