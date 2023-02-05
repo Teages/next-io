@@ -63,9 +63,26 @@ html,
 body {
   min-height: 100vh;
   width: 100%;
-  font-family: Nunito,M PLUS Rounded\ 1c,BlinkMacSystemFont,-apple-system,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,Helvetica,Arial,sans-serif
 }
 
+html {
+  font-family: Nunito,'Noto Sans','M PLUS Rounded\ 1c',system-ui,-apple-system,BlinkMacSystemFont,Helvetica Neue,Helvetica,sans-serif
+}
+html[lang="zh-CN"] {
+  font-family: Nunito,'Noto Sans', 'Noto Sans SC','M PLUS Rounded\ 1c',system-ui,-apple-system,BlinkMacSystemFont,Helvetica Neue,Helvetica,sans-serif
+}
+html[lang="zh-FJ"] {
+  font-family: Nunito,'Noto Sans', 'Noto Sans SC','M PLUS Rounded\ 1c',system-ui,-apple-system,BlinkMacSystemFont,Helvetica Neue,Helvetica,sans-serif
+}
+html[lang="zh-TW"] {
+  font-family: Nunito,'Noto Sans', 'Noto Sans TC','M PLUS Rounded\ 1c',system-ui,-apple-system,BlinkMacSystemFont,Helvetica Neue,Helvetica,sans-serif
+}
+html[lang="ja-JP"] {
+  font-family: Nunito,'Noto Sans', 'Noto Sans JP','M PLUS Rounded\ 1c',system-ui,-apple-system,BlinkMacSystemFont,Helvetica Neue,Helvetica,sans-serif
+}
+html[lang="ko-KR"] {
+  font-family: Nunito,'Noto Sans', 'Noto Sans KR','M PLUS Rounded\ 1c',system-ui,-apple-system,BlinkMacSystemFont,Helvetica Neue,Helvetica,sans-serif
+}
 body {
   @apply bg-black bg-opacity-30 break-words
 }
@@ -125,10 +142,6 @@ body {
 .btn-disabled, .btn-disabled:hover, .btn[disabled], .btn[disabled]:hover {
   --tw-bg-opacity: 0.8;
   --tw-text-opacity: 0.6;
-}
-
-.btn-sm {
-  @apply font-medium;
 }
 
 .alert {

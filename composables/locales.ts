@@ -19,11 +19,17 @@ export const useLocales = () => {
     useHead({
       htmlAttrs:{
         lang: code
+        // lang: code
       }
     })
   }
   
   i18nSetLocale(cookie.value || 'en')
+  useHead({
+    htmlAttrs:{
+      lang: cookie.value || 'en'
+    }
+  })
 
   return { availableLocales, locale, setLocale, localeCookie: cookie }
 }

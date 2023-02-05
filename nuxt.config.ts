@@ -37,7 +37,12 @@ export default defineNuxtConfig({
       '@nuxtjs/google-fonts', {
         families: {
           'Nunito': [300, 400, 700],
-          'M PLUS Rounded 1c': [300]
+          'M PLUS Rounded 1c': [300],
+          'Noto Sans': true,
+          'Noto Sans SC': true,
+          'Noto Sans TC': true,
+          'Noto Sans JP': true,
+          'Noto Sans KR': true
         }
       }
     ]

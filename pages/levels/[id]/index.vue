@@ -222,28 +222,14 @@
             </tbody>
           </table>
         </div>
-        <div class="flex">
-          <div class="flex-1" />
-          <div class="btn-group shadow-xl">
-            <button class="btn btn-sm" :disabled="diffRankPage === 1" @click="diffRankPage = 1">
-              <Icon name="ic:round-keyboard-double-arrow-left" />
-            </button>
-            <button class="btn btn-sm" :disabled="diffRankPage === 1" @click="diffRankPage -= 1">
-              <Icon name="ic:round-keyboard-arrow-left" />
-            </button>
-            <button class="btn btn-sm btn-active">{{ diffRankPage }} / {{ Math.ceil(rankData.chart.numPlayers / 10) }}</button>
-            <button class="btn btn-sm" :disabled="rankData.chart.numPlayers <= diffRankPage * 10"
-              @click="diffRankPage += 1">
-              <Icon name="ic:round-keyboard-arrow-right" />
-            </button>
-            <button class="btn btn-sm" :disabled="rankData.chart.numPlayers <= diffRankPage * 10"
-              @click="diffRankPage = Math.ceil(rankData.chart.numPlayers / 10)">
-              <Icon name="ic:round-keyboard-double-arrow-right" />
-            </button>
-          </div>
-        </div>
-
-
+        <Pagination class="w-full justify-center sm:justify-end"
+          :page="diffRankPage"
+          :total-page="Math.ceil(rankData.chart.numPlayers / 10)"
+          :to-first-page="() => {diffRankPage = 1}"
+          :to-prev-page="() => {diffRankPage -= 1}"
+          :to-next-page="() => {diffRankPage += 1}"
+          :to-final-page="() => {diffRankPage = Math.ceil(rankData.chart.numPlayers / 10)}"
+        />
       </div>
     </div>
     <CommentThread category="level" :thread="levelId" :getToken="getToken" />

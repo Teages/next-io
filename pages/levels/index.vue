@@ -72,26 +72,14 @@
         <LevelCard v-for="level in levels" :level="level" />
       </div>
       <progress v-if="loading" class="progress progress-info w-full"></progress>
-      <div class="w-full flex justify-center sm:justify-end">
-        <div class="flex pt-4">
-          <div class="flex-1" />
-          <div class="btn-group shadow-xl">
-            <button class="btn" :disabled="page === 1" @click="page = 1">
-              <Icon name="ic:round-keyboard-double-arrow-left" />
-            </button>
-            <button class="btn" :disabled="page === 1" @click="page -= 1">
-              <Icon name="ic:round-keyboard-arrow-left" />
-            </button>
-            <button class="btn btn-active">{{ page }} / {{ totalPagesCount }}</button>
-            <button class="btn" :disabled="totalPagesCount <= page" @click="page += 1">
-              <Icon name="ic:round-keyboard-arrow-right" />
-            </button>
-            <button class="btn" :disabled="totalPagesCount <= page" @click="page = totalPagesCount">
-              <Icon name="ic:round-keyboard-double-arrow-right" />
-            </button>
-          </div>
-        </div>
-      </div>
+      <Pagination class="w-full justify-center sm:justify-end"
+        :page="page"
+        :total-page="totalPagesCount"
+        :to-first-page="() => {page = 1}"
+        :to-prev-page="() => {page -= 1}"
+        :to-next-page="() => {page += 1}"
+        :to-final-page="() => {page = totalPagesCount}"
+      />
     </template>
     <template v-else>
       No level found.
