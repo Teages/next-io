@@ -1,6 +1,6 @@
 <template>
   <div class="flex">
-    <div class="flex pt-4">
+    <div v-if="!open" class="flex pt-4">
       <div class="flex-1" />
       <div class="btn-group shadow-xl">
         <button v-if="toFirstPage" class="btn btn-sm" :disabled="_isFirstPage || disabled" @click="toFirstPage">
@@ -9,7 +9,7 @@
         <button v-if="toPrevPage" class="btn btn-sm" :disabled="_isFirstPage || disabled" @click="toPrevPage">
           <Icon name="ic:round-keyboard-arrow-left" />
         </button>
-        <button v-if="page" class="btn font-bold btn-sm btn-primary" :disabled="disabled">
+        <button v-if="page" class="btn font-bold btn-sm btn-primary" @click="open = (jumpToPage != null)" :disabled="disabled">
           {{ page }}
           <template v-if="totalPage">
             / {{ totalPage }}
@@ -18,8 +18,24 @@
         <button v-if="toNextPage" class="btn btn-sm" :disabled="_isFinalPage || disabled" @click="toNextPage">
           <Icon name="ic:round-keyboard-arrow-right" />
         </button>
-        <button v-if="toFinalPage" class="btn btn-sm" :disabled="_isFinalPage || disabled" @click="page = toFinalPage">
+        <button v-if="toFinalPage" class="btn btn-sm" :disabled="_isFinalPage || disabled" @click="toFinalPage">
           <Icon name="ic:round-keyboard-double-arrow-right" />
+        </button>
+      </div>
+    </div>
+    
+    <div v-else class="flex pt-4">
+      <div class="input-group text-base-content w-full flex">
+        <button class="btn btn-sm btn-square" @click="open=false" :disabled="disabled">
+          <Icon name="material-symbols:close" size="24" />
+        </button>
+        <input v-model="customPage" type="number" :placeholder="page" :min="1" :max="totalPage" class="input input-sm text-center w-20 input-bordered appearance-none"
+          @keyup.enter.native="null">
+        <button v-if="totalPage" class="btn w-20 font-bold btn-sm" @click="customPage = totalPage" :disabled="disabled">
+          / {{ totalPage }}
+        </button>
+        <button class="btn btn-sm btn-primary btn-square" @click="_jumpToPage" :disabled="disabled || customPage == ''">
+          <Icon name="ic:twotone-keyboard-arrow-right" size="24" />
         </button>
       </div>
     </div>
@@ -34,6 +50,8 @@ const props = defineProps({
   toFinalPage: Function,
   page: Number,
   totalPage: Number,
+  
+  jumpToPage: Function,
   
   isFirstPage: Boolean,
   isFinalPage: Boolean,
@@ -61,4 +79,12 @@ const _isFinalPage = computed(() => {
   return false
 })
 
+const customPage = ref('')
+const _jumpToPage = () => {
+  const _customPage = parseInt(customPage.value) || 1
+  props.jumpToPage(_customPage)
+  open.value = false
+  customPage.value = ''
+}
+const open = ref(false)
 </script>

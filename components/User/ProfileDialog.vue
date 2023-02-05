@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed right-4 top-12 p-2 sm:absolute sm:top-8 sm:-right-4">
+  <div v-if="data" class="fixed right-4 top-12 p-2 sm:absolute sm:top-8 sm:-right-4">
     <div class="card bg-base-100 shadow-xl w-72">
       <div class="card w-full bg-base-100 max-h-30 shadow-xl image-full">
         <figure><img :src="data.profile.header.thumbnail" /></figure>

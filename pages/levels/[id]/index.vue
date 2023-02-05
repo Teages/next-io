@@ -229,6 +229,7 @@
           :to-prev-page="() => {diffRankPage -= 1}"
           :to-next-page="() => {diffRankPage += 1}"
           :to-final-page="() => {diffRankPage = Math.ceil(rankData.chart.numPlayers / 10)}"
+          :jump-to-page="setRankPage"
         />
       </div>
     </div>
@@ -397,6 +398,9 @@ watch(diffRankPage, async (val, oldVal) => {
   rankData.value = newRanking.value
   realDiffRankPage.value = val
 })
+const setRankPage = (val) => {
+  diffRankPage.value = val
+}
 
 async function syncRanking() {
   loadingRank.value = true
