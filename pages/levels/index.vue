@@ -16,7 +16,8 @@
         </div>
         <div class="form-control">
           <div class="input-group text-base-content">
-            <input v-model="search" type="text" placeholder="Search levels..." class="input input-bordered w-full">
+            <input v-model="search" type="text" placeholder="Search levels..." class="input input-bordered w-full"
+              @keyup.enter.native="updateSearch">
             <button class="btn btn-primary btn-square" @click="updateSearch" :disabled="search === route.query.search">
               <Icon name="material-symbols:search" size="24" />
             </button>
@@ -67,34 +68,26 @@
       </div>
     </div>
     <progress v-if="loading" class="progress progress-info w-full"></progress>
-    <template v-if="levels">
+    <template v-if="haveLevel">
       <div :class="addClassIf('grid md:grid-cols-2 xl:grid-cols-3 gap-4 mt-8 md:gap-6 xl:gap-8', 'opacity-60', loading)">
         <LevelCard v-for="level in levels" :level="level" />
       </div>
       <progress v-if="loading" class="progress progress-info w-full"></progress>
-      <div class="w-full flex justify-center sm:justify-end">
-        <div class="flex pt-4">
-          <div class="flex-1" />
-          <div class="btn-group shadow-xl">
-            <button class="btn" :disabled="page === 1" @click="page = 1">
-              <Icon name="ic:round-keyboard-double-arrow-left" />
-            </button>
-            <button class="btn" :disabled="page === 1" @click="page -= 1">
-              <Icon name="ic:round-keyboard-arrow-left" />
-            </button>
-            <button class="btn btn-active">{{ page }} / {{ totalPagesCount }}</button>
-            <button class="btn" :disabled="totalPagesCount <= page" @click="page += 1">
-              <Icon name="ic:round-keyboard-arrow-right" />
-            </button>
-            <button class="btn" :disabled="totalPagesCount <= page" @click="page = totalPagesCount">
-              <Icon name="ic:round-keyboard-double-arrow-right" />
-            </button>
-          </div>
-        </div>
-      </div>
+      <Pagination class="w-full justify-center sm:justify-end"
+        :page="page"
+        :total-page="totalPagesCount"
+        :to-first-page="() => {page = 1}"
+        :to-prev-page="() => {page -= 1}"
+        :to-next-page="() => {page += 1}"
+        :to-final-page="() => {page = totalPagesCount}"
+        :jump-to-page="(val) => {updateRouter({ page: val })}"
+        :disabled="loading"
+      />
     </template>
     <template v-else>
-      No level found.
+      <p class="m-6">        
+        No level found.
+      </p>
     </template>
   </div>
 </template>
@@ -176,6 +169,10 @@ const page = computed({
   }
 })
 
+const haveLevel = computed(() => {
+  return levels.value.length > 0
+})
+
 const updateSearch = () => {
   updateRouter({ search: search.value })
 }
@@ -184,11 +181,18 @@ async function updateRouter(val) {
   await router.replace({
     query: {
       ...route.query,
+      page: undefined,
       ...val
     }
   })
-  syncData()
 }
+watch(route, async (val, newVal) => {
+  await syncData()
+  if (window) {
+    window.scroll(0,0)
+  }
+})
+
 
 // data fetch
 const pageSize = 18
@@ -208,7 +212,6 @@ async function syncData() {
   totalLevelsCount.value = parseInt(res.headers.get('x-total-entries')) || 0
 
   levels.value = [...res._data]
-  window.scroll(0,0)
   loading.value = false
   function baseURL(query) {
     if (query.search) {

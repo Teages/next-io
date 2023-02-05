@@ -5,7 +5,10 @@ export const useBackground = () => {
   const setBackground = (newBg:string) => {
     background.value.source = newBg
   }
+  const resetBackground = () => {
+    setBackground('')
+  }
   return {
-    background, setBackground
+    background, setBackground, resetBackground
   }
 }

@@ -15,9 +15,10 @@
     "@nuxtjs/apollo": "^5.0.0-alpha.2",
     "@nuxtjs/tailwindcss": "^6.1.2",
     "daisyui": "^2.37.0",
-    "nuxt": "^3.1.1"
+    "nuxt": "^3.1.2"
   },
   "dependencies": {
+    "@nuxtjs/google-fonts": "^3.0.0-1",
     "@nuxtjs/i18n": "^8.0.0-beta.3",
     "@tailwindcss/typography": "^0.5.8",
     "@types/config": "^3.3.0",
