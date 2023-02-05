@@ -17,9 +17,7 @@ export default defineNuxtConfig({
         { hid: 'description', name: 'description', content: pkg.description } // TODO: i18n description
       ],
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico', sizes: '64x64' },
-        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=Nunito:300,300i,400,400i,700,700i&display=swap' },
-        { rel: 'stylesheet', href: 'https://fonts.googleapis.com/css?family=M+PLUS+Rounded+1c:300,400&display=swap' }
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico', sizes: '64x64' }
       ],
       script: [
         { src: 'https://www.googletagmanager.com/gtag/js?id=' + config.get('analyticsCode'), async: true },
@@ -35,6 +33,14 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     'nuxt-icon',
     '@nuxtjs/i18n',
+    [
+      '@nuxtjs/google-fonts', {
+        families: {
+          'Nunito': [300, 400, 700],
+          'M PLUS Rounded 1c': [300]
+        }
+      }
+    ]
   ],
 
   i18n: {

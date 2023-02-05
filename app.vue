@@ -63,6 +63,7 @@ html,
 body {
   min-height: 100vh;
   width: 100%;
+  font-family: Nunito,M PLUS Rounded\ 1c,BlinkMacSystemFont,-apple-system,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,Helvetica,Arial,sans-serif
 }
 
 body {
