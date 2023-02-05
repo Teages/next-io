@@ -8,10 +8,10 @@
             <UserAvatar v-if="level.owner" :avatar="level.owner.avatar.small" :name="level.owner.name || level.owner.uid" :uid="level.owner.uid"
               class="h-8 clickable bg-transparent" />
             <div class="flex-1" />
-            <!-- <div class="grid grid-flow-row gap-2">
-              <div class="badge badge-lg h-8 category-badge-featured">Featured</div>
-              <div class="badge badge-lg h-8 category-badge-qualified">Qualified</div>
-            </div> -->
+            <div v-if="level.category" class="grid grid-flow-row gap-2">
+              <div v-if="level.category.includes('featured')" class="badge badge-lg h-8 category-badge-featured">Featured</div>
+              <div v-if="level.category.includes('qualified')" class="badge badge-lg h-8 category-badge-qualified">Qualified</div>
+            </div>
           </div>
           <div class="flex-1" />
           <div class="w-full flex flex-row">
@@ -36,7 +36,7 @@
           <LevelDiffBadgeSmall v-for="chart in level.charts" :type="chart.type" :difficulty="chart.difficulty" :notes-count="chart.notesCount" />
         </div>
         <div class="flex-1" />
-        <button class="btn btn-circle btn-sm btn-ghost">
+        <button v-if="level.musicPreview" class="btn btn-circle btn-sm btn-ghost">
           <Icon name="material-symbols:play-arrow" size="24" />
         </button>
       </div>

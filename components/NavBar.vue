@@ -62,7 +62,7 @@
         </Transition>
       </div>
       <div v-else class="flex-none px-2 sm:px-0">
-        <NuxtLink class="btn btn-sm" to="/session/login">{{ $t('general.login_btn') }}</NuxtLink>
+        <button class="btn btn-sm" @click="auth.toLogin()">{{ $t('general.login_btn') }}</button>
       </div>
     </ClientOnly>
   </div>
