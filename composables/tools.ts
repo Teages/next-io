@@ -5,9 +5,12 @@ export const returnIf = (b: boolean, value: any, noValue?: any) => {
   return b ? value : noValue
 }
 
-export const addClassIf = (origin:string, addition:string, bool:boolean) => {
+export const addClassIf = (origin:string, addition:string, bool:boolean, elseAdd: string = '') => {
   if (bool) {
     return `${origin} ${addition}`
+  }
+  if (elseAdd && elseAdd !== '') {
+    return `${origin} ${elseAdd}`
   }
   return origin
 }
