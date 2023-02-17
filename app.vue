@@ -147,6 +147,14 @@ input[type=number].appearance-none {
   @apply text-primary;
 }
 
+.btn-active-text {
+  @apply hidden
+}
+
+.btn-active .btn-active-text {
+  @apply block
+}
+
 .btn-disabled, .btn-disabled:hover, .btn[disabled], .btn[disabled]:hover {
   --tw-bg-opacity: 0.8;
   --tw-text-opacity: 0.6;

@@ -1,7 +1,9 @@
 <template>
   <ClientOnly>
-    <VueRecaptcha ref="captcha" :sitekey="sitekey" recaptcha-host="www.recaptcha.net" size="invisible"
-      badge="bottomleft" @verify="onVerify" @expired="onExpired" />
+    <Teleport to="body">
+      <VueRecaptcha id="google-captcha" ref="captcha" :sitekey="sitekey" recaptcha-host="www.recaptcha.net" size="invisible"
+        badge="bottomleft" @verify="onVerify" @expired="onExpired" />
+    </Teleport>
   </ClientOnly>
 </template>
 
