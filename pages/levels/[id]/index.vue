@@ -199,7 +199,7 @@
                   {{ rank.score }}
                 </td>
                 <td class="font-semibold">
-                  {{ (rank.accuracy * 100).toFixed(2) }}%
+                  {{ (Math.floor(rank.accuracy * 10000)/100).toFixed(2) }}%
                 </td>
                 <td class="font-semibold">{{ rank.details.maxCombo }}x</td>
                 <td>
