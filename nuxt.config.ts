@@ -2,6 +2,8 @@ import config from 'config'
 import * as dotenv from 'dotenv'
 import pkg from './package.json'
 
+import * as locale from './locale'
+
 dotenv.config()
 
 // https://v3.nuxtjs.org/api/configuration/nuxt.config
@@ -31,25 +33,27 @@ export default defineNuxtConfig({
     '@nuxtjs/tailwindcss',
     'nuxt-icon',
     '@nuxtjs/i18n',
-    '@nuxtjs/google-fonts',
+    [
+      '@nuxtjs/google-fonts', {
+        families: {
+          'Nunito': [300, 400, 700],
+          'M PLUS Rounded 1c': [300],
+          'Noto Sans': true,
+          'Noto Sans SC': true,
+          'Noto Sans TC': true,
+          'Noto Sans JP': true,
+          'Noto Sans KR': true
+        }
+      }
+    ]
   ],
 
-  googleFonts: {
-    download: false,
-    // overwriting: true,
-    families: {
-      'Nunito': [300, 400, 700],
-      'M PLUS Rounded 1c': [300],
-      'Noto Sans': true,
-      'Noto Sans SC': true,
-      'Noto Sans TC': true,
-      'Noto Sans JP': true,
-      'Noto Sans KR': true
-    }
-  },
-
   i18n: {
-    vueI18n: './i18n.config.ts',
+    vueI18n: {
+      legacy: false,
+      locale: 'en',
+      messages: locale
+    }
   },
 
   apollo: {
