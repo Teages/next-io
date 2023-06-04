@@ -25,9 +25,9 @@ export default defineNuxtConfig({
   },
 
   modules: [
-    '@nuxtjs/apollo',
+    // '@nuxtjs/apollo',
     '@vueuse/nuxt',
-    'nuxt-proxy',
+    // 'nuxt-proxy',
     '@nuxtjs/tailwindcss',
     'nuxt-icon',
     '@nuxtjs/i18n',
@@ -52,22 +52,22 @@ export default defineNuxtConfig({
     vueI18n: './i18n.config.ts',
   },
 
-  apollo: {
-    clients: {
-      default: {
-        tokenName: 'cyt:sess',
-        cookieAttributes: {
-          path: '/',
-          secure: false,
-        },
-        httpEndpoint: config.get('graphql'),
-        httpLinkOptions: {
-          credentials: 'include'
-        },
-        websocketsOnly: false
-      }
-    },
-  },
+  // apollo: {
+  //   clients: {
+  //     default: {
+  //       tokenName: 'cyt:sess',
+  //       cookieAttributes: {
+  //         path: '/',
+  //         secure: false,
+  //       },
+  //       httpEndpoint: config.get('graphql'),
+  //       httpLinkOptions: {
+  //         credentials: 'include'
+  //       },
+  //       websocketsOnly: false
+  //     }
+  //   },
+  // },
 
   runtimeConfig: {
     public: {
