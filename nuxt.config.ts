@@ -87,6 +87,9 @@ export default defineNuxtConfig({
         changeOrigin: true,
         prependPath: false,
         ws: true,
+        headers: {
+          'user-agent': process.env.SERVICES_UA ?? '',
+        },
         cookieDomainRewrite: {
           'cytoid.io': 'localhost'
         }
@@ -95,6 +98,9 @@ export default defineNuxtConfig({
         target: config.get('serviceURLServer') + '/graphql',
         changeOrigin: true,
         ws: true,
+        headers: {
+          'user-agent': process.env.SERVICES_UA ?? '',
+        },
         cookieDomainRewrite: {
           'cytoid.io': 'localhost'
         }
