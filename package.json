@@ -16,7 +16,7 @@
     "@nuxtjs/apollo": "^5.0.0-alpha.2",
     "@nuxtjs/tailwindcss": "^6.1.2",
     "cross-env": "^7.0.3",
-    "daisyui": "^2.37.0",
+    "daisyui": "^3.0.3",
     "nuxt": "^3.5.2"
   },
   "dependencies": {
@@ -24,15 +24,15 @@
     "@nuxtjs/i18n": "^8.0.0-beta.3",
     "@tailwindcss/typography": "^0.5.8",
     "@types/config": "^3.3.0",
-    "@types/marked": "^4.0.7",
+    "@types/marked": "^5.0.0",
     "@types/sanitize-html": "^2.6.2",
-    "@vueuse/nuxt": "^9.4.0",
+    "@vueuse/nuxt": "^10.1.2",
     "config": "^3.3.8",
     "date-fns": "^2.29.3",
-    "dotenv": "^16.0.3",
-    "marked": "^4.2.2",
-    "nuxt-icon": "^0.1.7",
-    "nuxt-proxy": "^0.3.2",
+    "dotenv": "^16.1.4",
+    "marked": "^5.0.4",
+    "nuxt-icon": "^0.4.1",
+    "nuxt-proxy": "^0.4.1",
     "sanitize-html": "^2.7.3",
     "vue-recaptcha": "^2.0.3"
   }
