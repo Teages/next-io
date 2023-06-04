@@ -112,7 +112,7 @@
 
           <template v-if="auth.isLogin()">
             <div class="flex py-3 px-4 mt-2 bg-gray-500/20 rounded-full select-none">
-              <span class="aspect-square rounded-full overflow-hidden h-8">
+              <span class="aspect-square rounded-full h-8">
                 <img :src="avatarURL(auth.user.value.id)" />
               </span>
               <div class="flex-1" />
@@ -233,24 +233,6 @@
         />
       </div>
     </div>
-
-    <div class="alert px-8">
-      <div>
-        <p v-if="data.level?.category.includes('qualified')">
-          这个谱已经被标记为 Qualified, 讨论区已归档. <!-- **REPLACE_TEXT** -->
-        </p>
-        <p v-else>
-          这个谱还没有被标记为 Qualified, 加入讨论让它更快被认定. <!-- **REPLACE_TEXT** -->
-        </p>
-      </div>
-      <div class="flex-none">
-        <NuxtLink :to="`/levels/${levelId}/discussion`" class="btn btn-sm">
-          <Icon name="material-symbols:chat-outline-rounded" size="16" class="mr-2" />
-          讨论 <!-- **REPLACE_TEXT** -->
-        </NuxtLink>
-      </div>
-    </div>
-
     <CommentThread category="level" :thread="levelId" :getToken="getToken" />
   </LayoutContents>
 </template>
@@ -278,7 +260,6 @@ const query = gql`
       censored
       size
       tags
-      category
       creationDate
       modificationDate
       owned

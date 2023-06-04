@@ -7,7 +7,6 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
-    "dev:local": "cross-env NODE_APP_INSTANCE=local nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
@@ -16,8 +15,7 @@
     "@nuxtjs/apollo": "^5.0.0-alpha.2",
     "@nuxtjs/tailwindcss": "^6.1.2",
     "daisyui": "^2.37.0",
-    "nuxt": "^3.1.2",
-    "cross-env": "^7.0.3"
+    "nuxt": "^3.1.2"
   },
   "dependencies": {
     "@nuxtjs/google-fonts": "^3.0.0-1",

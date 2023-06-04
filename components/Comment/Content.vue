@@ -69,7 +69,6 @@ const showReply = ref(false)
 const showMore = ref(false)
 const loading = ref(true)
 const data = ref([])
-const replyCount = ref(props.post.count ?? 0)
 watch(showMore, async (val) => {
   if (data.value.length === 0 && val) {
     data.value.push(...await services(`comments/${props.post.id}`))
@@ -78,6 +77,5 @@ watch(showMore, async (val) => {
 })
 const afterPost = (newPost) => {
   data.value.push(newPost)
-  replyCount.value += 1
 }
 </script>
