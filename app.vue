@@ -168,6 +168,10 @@ input[type=number].appearance-none {
   @apply hidden
 }
 
+.btn-active {
+  @apply bg-base-300
+}
+
 .btn-active .btn-active-text {
   @apply block
 }

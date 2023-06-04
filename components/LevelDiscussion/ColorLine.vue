@@ -10,7 +10,7 @@
     </div>
     <div v-else-if="mode === ''" class="badge badge-xs badge-primary ml-3 my-3 flex-1">
     </div>
-    <div v-else class="badge badge-xs ml-3 my-3 flex-1">
+    <div v-else class="badge badge-xs badge-neutral ml-3 my-3 flex-1">
     </div>
   </div>
 </template>

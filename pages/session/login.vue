@@ -6,21 +6,21 @@
         <p>{{ t('login.subtitle') }}</p>
         <div class="mt-2" />
         <div class="form-control">
-          <label class="input-group w-full">
-            <span class="bg-neutral">
+          <label class="join w-full">
+            <span class="join-item bg-neutral btn">
               <Icon name="ph:user-bold" />
             </span>
             <input v-model="loginForm.username" type="text" :placeholder="t('login.username_field_placeholder')"
-              class="input input-bordered flex-1" />
+              class="join-item input input-bordered flex-1" />
           </label>
         </div>
         <div class="form-control">
-          <label class="input-group w-full">
-            <span class="bg-neutral">
+          <label class="join w-full">
+            <span class="join-item btn bg-neutral">
               <Icon name="material-symbols:key" />
             </span>
             <input v-model="loginForm.password" type="password" :placeholder="t('login.password_field_placeholder')"
-              class="input input-bordered flex-1" />
+              class="join-item input input-bordered flex-1" />
           </label>
           <label class="label">
             <a href="#" class="label-text-alt link link-hover ml-auto">{{ t('general.forgot_password_link_title')
