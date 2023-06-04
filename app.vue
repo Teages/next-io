@@ -88,22 +88,6 @@ body {
   @apply bg-black bg-opacity-30 break-words
 }
 
-
-/* Scrollbar */
-::-webkit-scrollbar {
-  /* width : 12px; */
-  /* height: 8px; */
-  @apply w-3 h-2
-}
-::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  @apply bg-neutral-content
-}
-::-webkit-scrollbar-track {
-  border-radius: 10px;
-  @apply bg-neutral
-}
-
 /* Cytoid */
 
 .bg-image-loading {
