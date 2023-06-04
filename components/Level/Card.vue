@@ -32,8 +32,8 @@
     </NuxtLink>
     <div class="py-4 px-2 card-body flex-none">
       <div class="w-full flex flex-row">
-        <div class="flex items-center space-x-2">
-          <LevelDiffBadgeSmall v-for="chart in level.charts" :type="chart.type" :difficulty="chart.difficulty" :notes-count="chart.notesCount" />
+        <div class="flex items-center">
+          <LevelDiffBadgeSmall v-for="chart in level.charts" :type="chart.type" :difficulty="chart.difficulty" :notes-count="chart.notesCount" class="mx-1"/>
         </div>
         <div class="flex-1" />
         <button v-if="level.musicPreview" class="btn btn-circle btn-sm btn-ghost">
