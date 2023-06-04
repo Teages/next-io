@@ -173,7 +173,7 @@
         </div>
         <progress :class="addClassIf('progress progress-primary', 'opacity-0', !loadingRank)"></progress>
         <div :class="addClassIf('overflow-x-auto select-none', 'opacity-50', loadingRank)">
-          <table class="table table-compact w-full">
+          <table class="table table-zebra w-full">
             <thead>
               <tr>
                 <th></th>
@@ -195,21 +195,24 @@
                     class="h-8 w-fit clickable bg-transparent" />
                 </td>
                 <td class="font-semibold">
-                  <ScoreBadge :score="rank.score" />
-                  {{ rank.score }}
+                  <div class="flex gap-x-1">
+                    <ScoreBadge :score="rank.score" />
+                    {{ rank.score }}
+                  </div>
                 </td>
                 <td class="font-semibold">
                   {{ (rank.accuracy * 100).toFixed(2) }}%
                 </td>
                 <td class="font-semibold">{{ rank.details.maxCombo }}x</td>
                 <td>
-                  <span class="text-blue-400">{{ rank.details.perfect }} </span> /
-                  <span class="text-yellow-400">{{ rank.details.great }} </span> /
-                  <span class="text-green-400">{{ rank.details.good }} </span> /
-                  <span class="text-red-400">{{ rank.details.bad }} </span> /
-                  <span>{{ rank.details.miss }}</span>
+                  <div class="flex gap-x-2">
+                    <span class="text-blue-400">{{ rank.details.perfect }} </span> /
+                    <span class="text-yellow-400">{{ rank.details.great }} </span> /
+                    <span class="text-green-400">{{ rank.details.good }} </span> /
+                    <span class="text-red-400">{{ rank.details.bad }} </span> /
+                    <span>{{ rank.details.miss }}</span>
+                  </div>
                 </td>
-                <!-- <td>{{ rank.mods }}</td> -->
                 <td>
                   <div class="flex">
                     <span v-for="mod in rank.mods" >
@@ -217,7 +220,11 @@
                     </span> 
                   </div> 
                 </td>
-                <td>{{ dateFromNow(rank.date) }}</td>
+                <td>
+                  <div class="whitespace-nowrap	">
+                    {{ dateFromNow(rank.date) }}
+                  </div>
+                </td>
               </tr>
             </tbody>
           </table>
@@ -234,8 +241,8 @@
       </div>
     </div>
 
-    <div class="alert px-8">
-      <div>
+    <div class="alert px-8 flex">
+      <div class="flex-1">
         <p v-if="data.level?.category.includes('qualified')">
           这个谱已经被标记为 Qualified, 讨论区已归档. <!-- **REPLACE_TEXT** -->
         </p>
@@ -244,7 +251,7 @@
         </p>
       </div>
       <div class="flex-none">
-        <NuxtLink :to="`/levels/${levelId}/discussion`" class="btn btn-sm">
+        <NuxtLink :to="`/levels/${levelId}/discussion`" class="btn btn-sm btn-primary">
           <Icon name="material-symbols:chat-outline-rounded" size="16" class="mr-2" />
           讨论 <!-- **REPLACE_TEXT** -->
         </NuxtLink>

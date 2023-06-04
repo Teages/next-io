@@ -15,10 +15,10 @@
           </div>
         </div>
         <div class="form-control">
-          <div class="input-group text-base-content">
-            <input v-model="search" type="text" placeholder="Search levels..." class="input input-bordered w-full"
+          <div class="join text-base-content">
+            <input v-model="search" type="text" placeholder="Search levels..." class="join-item input input-bordered w-full"
               @keyup.enter.native="updateSearch">
-            <button class="btn btn-primary btn-square" @click="updateSearch" :disabled="search === route.query.search">
+            <button class="join-item btn btn-primary btn-square" @click="updateSearch" :disabled="search === route.query.search">
               <Icon name="material-symbols:search" size="24" />
             </button>
           </div>
@@ -28,11 +28,11 @@
             <div class="max-w-fit">
               <p class="card-subtitle"> {{ $t('levels.sort_select_title') }} </p>
               <div class="form-control w-full max-w-xs pt-2">
-                <div class="input-group">
-                  <button v-if="order === 'desc'" class="btn btn-square" @click="order = 'asc'">
+                <div class="join">
+                  <button v-if="order === 'desc'" class="join-item btn btn-square" @click="order = 'asc'">
                     <Icon name="fa-solid:sort-amount-down" size="20" />
                   </button>
-                  <button v-else class="btn btn-square" @click="order = 'desc'">
+                  <button v-else class="join-item btn btn-square" @click="order = 'desc'">
                     <Icon name="fa-solid:sort-amount-up" size="20" />
                   </button>
                   <select v-model="sort" class="select select-bordered">
@@ -50,14 +50,14 @@
             </div>
             <div class="pt-4 sm:pt-0">
               <p class="card-subtitle"> {{ $t('levels.sort_select_title') }} </p>
-              <div class="btn-group pt-2">
-                <button :class="addClassIf('btn', 'btn-active', !(featured || qualified))" @click="selectAll">
+              <div class="join pt-2">
+                <button :class="addClassIf('join-item btn', 'btn-active', !(featured || qualified))" @click="selectAll">
                   {{ $t('levels.category_select_item_all') }}
                 </button>
-                <button :class="addClassIf('btn btn-fea', 'btn-active', featured)" @click="featured = !featured">
+                <button :class="addClassIf('join-item btn btn-fea', 'btn-active', featured)" @click="featured = !featured">
                   {{ $t('levels.category_select_item_featured') }}
                 </button>
-                <button :class="addClassIf('btn btn-qua', 'btn-active', qualified)" @click="qualified = !qualified">
+                <button :class="addClassIf('join-item btn btn-qua', 'btn-active', qualified)" @click="qualified = !qualified">
                   {{ $t('levels.category_select_item_qualified') }}
                 </button>
               </div>

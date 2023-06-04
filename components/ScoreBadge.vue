@@ -1,7 +1,7 @@
 <template>
-  <div v-if="scoreGrade === 'MAX'" class="badge badge-xs badge-warning">{{ scoreGrade }}</div>
-  <div v-else-if="scoreGrade === 'SSS'" class="badge badge-xs badge-info">{{ scoreGrade }}</div>
-  <div v-else class="badge badge-xs">{{ scoreGrade }}</div>
+  <div v-if="scoreGrade === 'MAX'" class="badge badge-sm badge-warning">{{ scoreGrade }}</div>
+  <div v-else-if="scoreGrade === 'SSS'" class="badge badge-sm badge-info">{{ scoreGrade }}</div>
+  <div v-else class="badge badge-neutral badge-sm">{{ scoreGrade }}</div>
 </template>
 
 <script setup>

@@ -20,7 +20,7 @@
                 </div>
                 <div v-else-if="data.profile.rating > 15" class="badge badge-warning">rt {{ data.profile.rating.toFixed(2) }}</div>
                 <div v-else-if="data.profile.rating > 12" class="badge badge-info">rt {{ data.profile.rating.toFixed(2) }}</div>
-                <div v-else class="badge">rt {{ data.profile.rating.toFixed(2) }}</div>
+                <div v-else class="badge badge-neutral">rt {{ data.profile.rating.toFixed(2) }}</div>
               </div>
             </div>
 
