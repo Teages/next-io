@@ -13,6 +13,7 @@
 </template>
 
 <script setup>
-import Layout from './basic.vue'
-const { background } = useBackground()
+import Layout from './default.vue'
+const { background, resetBackground } = useBackground()
+resetBackground()
 </script>
