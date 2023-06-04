@@ -863,7 +863,7 @@
     google-fonts-helper "^3.3.0"
     pathe "^1.1.0"
 
-"@nuxtjs/i18n@^8.0.0-beta.3":
+"@nuxtjs/i18n@^8.0.0-beta.12":
   version "8.0.0-beta.12"
   resolved "https://mirrors.cloud.tencent.com/npm/@nuxtjs/i18n/-/i18n-8.0.0-beta.12.tgz#fbf1dd2979cd4e14ce0a1c0a06b7b7b4f390e479"
   integrity sha512-f149HXPyk4RJZul3ThWo4YVN7WmL3scge8UZx08cxAiKjhoCIoHySKxX05CwAu0v7sfYxeYeP+qCeQyGaBErpQ==
