@@ -66,8 +66,7 @@ body {
 }
 
 html {
-  font-family: Nunito,'Noto Sans', 'Noto Sans TC','M PLUS Rounded\ 1c',system-ui,-apple-system,BlinkMacSystemFont,Helvetica Neue,Helvetica,sans-serif
-  /* use Traditional Chinese as default Chinese Character */
+  font-family: Nunito,'Noto Sans','M PLUS Rounded\ 1c',system-ui,-apple-system,BlinkMacSystemFont,Helvetica Neue,Helvetica,sans-serif
 }
 html[lang="zh-CN"] {
   font-family: Nunito,'Noto Sans', 'Noto Sans SC','M PLUS Rounded\ 1c',system-ui,-apple-system,BlinkMacSystemFont,Helvetica Neue,Helvetica,sans-serif
