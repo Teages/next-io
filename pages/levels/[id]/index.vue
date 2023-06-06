@@ -68,7 +68,7 @@
           <div class="prose-sm max-w-none mt-4" v-html="useMarked(data.level.description)" />
           <p class="card-subtitle pt-6"> {{ $t('level_details.details_card_tags_title') }} </p>
           <div v-if="data.level.tags.length > 0">
-            <NuxtLink class="badge select-none mr-2 my-1" v-for="tag in data.level.tags"
+            <NuxtLink class="badge badge-neutral select-none mr-2 my-1" v-for="tag in data.level.tags"
               :href="'/levels?tags=' + tag.toLowerCase()">{{ tag }}</NuxtLink>
           </div>
           <div v-else class="opacity-60 select-none">
@@ -78,9 +78,9 @@
       </div>
       <div class="card w-full bg-base-100 shadow-xl mt-5">
         <div class="card-body">
-          <p class="card-subtitle">
+          <p class="card-subtitle flex items-center gap-2">
             {{ $t('level_details.details_card_rating_title') }}
-            <span class="badge">
+            <span class="badge badge-sm badge-neutral">
               {{ data.level.rating.total }}
             </span>
           </p>
@@ -174,7 +174,7 @@
         <progress :class="addClassIf('progress progress-primary', 'opacity-0', !loadingRank)"></progress>
         <div :class="addClassIf('overflow-x-auto select-none', 'opacity-50', loadingRank)">
           <table class="table table-zebra w-full">
-            <thead>
+            <thead class="bg-neutral text-neutral-content">
               <tr>
                 <th></th>
                 <th>Player</th>
@@ -195,7 +195,7 @@
                     class="h-8 w-fit clickable bg-transparent" />
                 </td>
                 <td class="font-semibold">
-                  <div class="flex gap-x-1">
+                  <div class="flex gap-x-1 items-center">
                     <ScoreBadge :score="rank.score" />
                     {{ rank.score }}
                   </div>
@@ -205,7 +205,7 @@
                 </td>
                 <td class="font-semibold">{{ rank.details.maxCombo }}x</td>
                 <td>
-                  <div class="flex gap-x-2">
+                  <div class="flex gap-x-1">
                     <span class="text-blue-400">{{ rank.details.perfect }} </span> /
                     <span class="text-yellow-400">{{ rank.details.great }} </span> /
                     <span class="text-green-400">{{ rank.details.good }} </span> /
@@ -391,6 +391,7 @@ const downloadLevel = async () => {
   }
   if (downloadLink.value === '') {
     const downloadToken = await captcha.value.execute()
+    return
     try {
       const res = await services(`/levels/${levelId}/resources`, {
         method: 'POST',

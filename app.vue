@@ -88,6 +88,12 @@ body {
   @apply bg-black bg-opacity-30 break-words
 }
 
+/* Recaptcha */
+#google-captcha + div {
+  position: fixed !important;
+  top: 0 !important;
+  z-index: 100;
+}
 
 /* Scrollbar */
 ::-webkit-scrollbar {
@@ -150,6 +156,10 @@ input[type=number].appearance-none::-webkit-outer-spin-button {
 }
 input[type=number].appearance-none {
   -moz-appearance:textfield;
+}
+
+.prose-sm pre {
+  @apply overflow-x-auto
 }
 
 .badge {
