@@ -14,7 +14,7 @@ export default defineNuxtConfig({
     'nuxt-icon',
     '@nuxtjs/i18n',
     '@nuxtjs/google-fonts',
-    'vue-recaptcha/nuxt',
+    '@nuxtjs/turnstile',
   ],
 
   i18n: {
@@ -43,10 +43,11 @@ export default defineNuxtConfig({
       webURL: config.get('webURL'),
       graphqlURL: config.get('graphql'),
       servicesUA: process.env.SERVICES_UA ?? '',
-      recaptcha: {
-        v2SiteKey: config.get('captchaKey'),
-      },
     },
+  },
+
+  turnstile: {
+    siteKey: config.get('captchaKey'),
   },
 
   graphqlCodegen: {

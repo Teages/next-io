@@ -42,6 +42,9 @@ body {
   border-radius: 10px;
   @apply bg-neutral
 }
+html {
+  @apply overflow-y-visible
+}
 
 /* Cytoid */
 

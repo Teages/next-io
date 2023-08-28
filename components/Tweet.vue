@@ -7,7 +7,7 @@ onMounted(() => {
   (async () => {
     try {
       // @ts-expect-error cdn
-      window?.twttr.widgets.load()
+      window?.twttr?.widgets?.load()
     }
     catch (error) {
       console.error(error)
