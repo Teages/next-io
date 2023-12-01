@@ -1,3 +1,6 @@
+> [!NOTE]
+> The repository has been migrated back to [Cytoid/cytoid.io](https://github.com/Cytoid/cytoid.io), here is an archive
+
 # Cytoid
 
 [![Crowdin](https://badges.crowdin.net/cytoid/localized.svg)](https://crowdin.com/project/cytoid)
