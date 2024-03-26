@@ -1,3 +1,4 @@
+import { relative, resolve } from 'node:path'
 import { readFile } from 'node:fs/promises'
 import { defineNuxtModule } from '@nuxt/kit'
 import { generate } from '@graphql-codegen/cli'
@@ -44,6 +45,7 @@ export default defineNuxtModule<CodegenOptions>({
         await generateCode()
       })
       nuxt.hook('builder:watch', async (event, path) => {
+        path = relative(nuxt.options.srcDir, resolve(nuxt.options.srcDir, path))
         const files = documents.map(doc => glob.sync(doc, {
           absolute: true,
         })).flat()
